@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">dataManagementNirApp</string>
+    <string name="noServerSetupNotice">You have no server set up</string>he
+
+    <string name="setUpAServer">Set up a server</string>
+    <string name="headerServerSetup">Setting up an SQL server</string>
+    <string name="serverSocket">Server socket</string>
+    <string name="serverTest">Test connection</string>
+    <string name="serverTestLog">Log will be here</string>
+    <string name="serverSettingsSubmit">Save settings</string>
+</resources>

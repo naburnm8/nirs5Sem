@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                   xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                   xmlns:tools="http://schemas.android.com/tools"
+                                                   android:layout_width="match_parent"
+                                                   android:layout_height="match_parent">
+
+    <TextView
+            android:text="@string/headerServerSetup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView2"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="16dp"
+            android:textSize="20sp"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="347dp"
+            android:layout_height="101dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="96dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="88dp"
+                android:hint="@string/serverSocket"
+                android:textAlignment="textStart"
+                android:textStyle="italic"
+                android:id="@+id/serverSocketInput"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+            android:text="@string/serverTest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/serverTestConnectionButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="228dp"
+            app:layout_constraintHorizontal_bias="0.498"/>
+
+    <TextView
+            android:text="@string/serverTestLog"
+            android:background="@drawable/border"
+            android:layout_width="359dp"
+            android:layout_height="233dp"
+            android:id="@+id/testLog"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            android:textAlignment="center"
+            app:layout_constraintTop_toBottomOf="@+id/serverTestConnectionButton"
+            app:layout_constraintBottom_toTopOf="@+id/saveServerSettings"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"/>
+
+    <Button
+            android:text="@string/serverSettingsSubmit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/saveServerSettings"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            android:layout_marginBottom="120dp"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
