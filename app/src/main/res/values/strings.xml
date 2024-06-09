@@ -8,4 +8,8 @@
     <string name="serverTest">Test connection</string>
     <string name="serverTestLog">Log will be here</string>
     <string name="serverSettingsSubmit">Save settings</string>
+    <string name="loginHeader">Welcome!\n\nPlease log in</string>
+    <string name="login">Login</string>
+    <string name="password">Password</string>
+    <string name="submit">Submit</string>
 </resources>

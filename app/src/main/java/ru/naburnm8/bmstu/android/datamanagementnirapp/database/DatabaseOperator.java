@@ -6,7 +6,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLDataException;
 import java.sql.SQLException;
-//NEED TO MAKE AT ASYNC
+//NEED TO MAKE IT ASYNC
 public abstract class DatabaseOperator implements DatabaseInterface{
     private String JDBC_URL;
     private String JDBC_USER;
@@ -18,8 +18,9 @@ public abstract class DatabaseOperator implements DatabaseInterface{
         this.JDBC_USER = JDBC_USER;
         this.JDBC_PASSWORD = JDBC_PASSWORD;
         this.JDBC_URL = getJDBC_URLfromString(serverURL);
+    }
+    public void testConnection(){
         Connection connection = null;
-        Exception exception;
         try {
             loadJDBCdriver();
             connection = DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASSWORD);
@@ -60,7 +61,7 @@ public abstract class DatabaseOperator implements DatabaseInterface{
         if(con != null){
             try{
                 con.close();
-            }catch (Exception e){Log.println(Log.ERROR, "Database", e.getMessage());}
+            } catch (Exception e) {Log.println(Log.ERROR, "Database", e.getMessage());}
         }
     }
 
