@@ -6,13 +6,13 @@ import ru.naburnm8.bmstu.android.datamanagementnirapp.asyncDatabase.DatabaseOper
 public class MicrosoftSQLOperator extends DatabaseOperator {
     @Override
     public String getJDBC_URLfromString(String serverURL) {
-        return "jdbc:sqlserver://" + serverURL + ";trustServerCertificate=true";
+        return "jdbc:jtds:sqlserver://" + serverURL + ";trustServerCertificate=true";
     }
 
     @Override
     public void loadJDBCdriver() {
         try{
-            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");}
+            Class.forName("net.sourceforge.jtds.jdbc.Driver");}
         catch (ClassNotFoundException e) {
             Log.println(Log.ERROR, "MicrosoftSQLOperator", e.toString());
         }

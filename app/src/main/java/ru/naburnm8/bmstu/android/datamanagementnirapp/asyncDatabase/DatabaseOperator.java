@@ -12,6 +12,7 @@ import java.util.ArrayList;
 abstract public class DatabaseOperator extends AsyncTask<DatabaseQuery, String, DatabaseResult> implements DatabaseInterface {
     @Override
     protected DatabaseResult doInBackground(DatabaseQuery... params) {
+
         DatabaseQuery databaseQuery = params[0];
         String JDBC_URL = getJDBC_URLfromString(databaseQuery.getURL());
         String JDBC_USER = databaseQuery.getJDBC_USERNAME();
@@ -39,6 +40,7 @@ abstract public class DatabaseOperator extends AsyncTask<DatabaseQuery, String, 
             try {
                 if (statement != null) {
                     statement.close();
+                    connection.close();
                 }
             } catch (SQLException e) {
                 Log.println(Log.ERROR, "Database", e.getMessage());

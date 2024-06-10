@@ -35,6 +35,8 @@ dependencies {
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
-    implementation("com.microsoft.sqlserver:mssql-jdbc:10.2.0.jre11")
-    implementation("org.postgresql:postgresql:42.7.3")
+    implementation("com.microsoft.sqlserver:mssql-jdbc:12.6.2.jre11")
+    implementation("org.postgresql:postgresql:42.3.10")
+    implementation("net.sourceforge.jtds:jtds:1.3.1")
+
 }

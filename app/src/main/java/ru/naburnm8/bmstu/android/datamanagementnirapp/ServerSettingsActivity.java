@@ -39,7 +39,7 @@ public class ServerSettingsActivity extends AppCompatActivity implements AsyncRe
     }
     void testServerConnection(String socket){
         DatabaseQuery query = new DatabaseQuery(socket, "1", "1", "", this);
-        new PostgreSQLOperator().execute(query);
+        new MicrosoftSQLOperator().execute(query);
     }
 
     @Override
