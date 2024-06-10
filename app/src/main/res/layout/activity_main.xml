@@ -31,19 +31,6 @@
             android:textSize="24sp"/>
 
     <Button
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:id="@+id/accountButton"
-            style="@style/Widget.Material3.Button.Icon"
-            android:background="@android:drawable/ic_menu_myplaces"
-            android:backgroundTintMode="multiply"
-            android:backgroundTint="@color/black"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="16dp"/>
-
-    <Button
             android:text="@string/setUpAServer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
