@@ -13,7 +13,6 @@ abstract public class DatabaseOperator extends AsyncTask<DatabaseQuery, String, 
     @Override
     protected DatabaseResult doInBackground(DatabaseQuery... params) {
         DatabaseQuery databaseQuery = params[0];
-        loadJDBCdriver();
         String JDBC_URL = getJDBC_URLfromString(databaseQuery.getURL());
         String JDBC_USER = databaseQuery.getJDBC_USERNAME();
         String JDBC_PASSWORD = databaseQuery.getJDBC_PASSWORD();
@@ -24,12 +23,14 @@ abstract public class DatabaseOperator extends AsyncTask<DatabaseQuery, String, 
         ResultSet resultSet;
         DatabaseResult databaseResult = new DatabaseResult("", null, context);
         try {
+            loadJDBCdriver();
             connection = DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASSWORD);
             Statement statement = connection.createStatement();
             resultSet = statement.executeQuery(query);
             databaseResult.setResults(getResults(resultSet));
             databaseResult.setLog(log);
-
+            resultSet.close();
+            statement.close();
         } catch (SQLException e) {
             log = e.getMessage();
             databaseResult.setLog(log);
