@@ -1,19 +1,18 @@
 <resources>
     <string name="app_name">dataManagementNirApp</string>
-    <string name="noServerSetupNotice">You have no server set up</string>he
-
+    <string name="noServerSetupNotice">You have no server set up</string>
     <string name="setUpAServer">Set up a server</string>
     <string name="headerServerSetup">Setting up an SQL server</string>
     <string name="serverSocket">Server socket</string>
-    <string name="serverTest">Test connection</string>
     <string name="serverTestLog">Log will be here</string>
     <string name="serverSettingsSubmit">Save settings</string>
-    <string name="loginHeader">Welcome!\n\nPlease log in</string>
+    <string name="loginHeader">Welcome!  Please log in</string>
     <string name="login">Login</string>
     <string name="password">Password</string>
     <string name="submit">Submit</string>
     <string name="connecting">Connecting…</string>
     <string name="currentLogin">Currently log on as: </string>
     <string name="currentServerSocket">Current server socket: </string>
-
+    <string name="serverTest">Test connection</string>
+    <string name="mainMenuHeader">Available actions: </string>
 </resources>
