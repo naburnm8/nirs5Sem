@@ -7,8 +7,10 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.textfield.TextInputEditText;
 import ru.naburnm8.bmstu.android.datamanagementnirapp.asyncDatabase.AsyncReceiver;
+import ru.naburnm8.bmstu.android.datamanagementnirapp.asyncDatabase.databaseData.DatabaseQuery;
+import ru.naburnm8.bmstu.android.datamanagementnirapp.asyncDatabase.dialects.MicrosoftSQLOperator;
+import ru.naburnm8.bmstu.android.datamanagementnirapp.asyncDatabase.dialects.PostgreSQLOperator;
 import ru.naburnm8.bmstu.android.datamanagementnirapp.database.AsyncDBOutput;
-import ru.naburnm8.bmstu.android.datamanagementnirapp.database.MicrosoftSQLOperator;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -29,15 +31,15 @@ public class ServerSettingsActivity extends AppCompatActivity implements AsyncRe
             if (socketEditable != null) {
                 socket = socketEditable.toString();
             }
-            boolean isValidServer = testServerConnection(socket);
+            testServerConnection(socket);
         });
         serverSocket = findViewById(R.id.serverSocketInput);
         testLog = findViewById(R.id.testLog);
 
     }
-    boolean testServerConnection(String socket){
-
-        return true;
+    void testServerConnection(String socket){
+        DatabaseQuery query = new DatabaseQuery(socket, "1", "1", "", this);
+        new PostgreSQLOperator().execute(query);
     }
 
     @Override

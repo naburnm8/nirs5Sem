@@ -21,20 +21,28 @@ abstract public class DatabaseOperator extends AsyncTask<DatabaseQuery, String, 
         Connection connection = null;
         String log = "Successful";
         ResultSet resultSet;
+        Statement statement = null;
         DatabaseResult databaseResult = new DatabaseResult("", null, context);
         try {
             loadJDBCdriver();
             connection = DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASSWORD);
-            Statement statement = connection.createStatement();
+            statement = connection.createStatement();
             resultSet = statement.executeQuery(query);
             databaseResult.setResults(getResults(resultSet));
             databaseResult.setLog(log);
             resultSet.close();
-            statement.close();
         } catch (SQLException e) {
             log = e.getMessage();
             databaseResult.setLog(log);
             Log.println(Log.ERROR, "Database", e.getMessage());
+        } finally {
+            try {
+                if (statement != null) {
+                    statement.close();
+                }
+            } catch (SQLException e) {
+                Log.println(Log.ERROR, "Database", e.getMessage());
+            }
         }
         return databaseResult;
     }
