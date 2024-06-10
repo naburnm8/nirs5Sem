@@ -7,6 +7,7 @@ import java.sql.DriverManager;
 import java.sql.SQLDataException;
 import java.sql.SQLException;
 //NEED TO MAKE IT ASYNC
+@Deprecated
 public abstract class DatabaseOperator implements DatabaseInterface{
     private String JDBC_URL;
     private String JDBC_USER;

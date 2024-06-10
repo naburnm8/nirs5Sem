@@ -6,12 +6,14 @@ import android.widget.Button;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.textfield.TextInputEditText;
+import ru.naburnm8.bmstu.android.datamanagementnirapp.asyncDatabase.AsyncReceiver;
 import ru.naburnm8.bmstu.android.datamanagementnirapp.database.AsyncDBOutput;
 import ru.naburnm8.bmstu.android.datamanagementnirapp.database.MicrosoftSQLOperator;
 
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
-public class ServerSettingsActivity extends AppCompatActivity implements AsyncDBOutput {
+public class ServerSettingsActivity extends AppCompatActivity implements AsyncReceiver {
     Button saveButton, testButton;
     TextInputEditText serverSocket;
     TextView testLog;
@@ -34,19 +36,17 @@ public class ServerSettingsActivity extends AppCompatActivity implements AsyncDB
 
     }
     boolean testServerConnection(String socket){
-        MicrosoftSQLOperator database = new MicrosoftSQLOperator(socket, "1", "1");
-        database.testConnection();
-        testLog.setText(database.getErrorMessage());
-        return database.isValidServer();
+
+        return true;
     }
 
     @Override
     public void setLogged(String logged) {
-
+        testLog.setText(logged);
     }
 
     @Override
-    public void setData(ResultSet resultSet) {
-
+    public void setData(ArrayList<ArrayList<String>> results) {
+        //data is ignored in this activity
     }
 }

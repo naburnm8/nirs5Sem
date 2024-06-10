@@ -2,7 +2,7 @@ package ru.naburnm8.bmstu.android.datamanagementnirapp.database;
 
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
-
+@Deprecated
 public class MicrosoftSQLOperator extends DatabaseOperator {
 
     public MicrosoftSQLOperator(String serverURL, String JDBC_USER, String JDBC_PASSWORD) {
