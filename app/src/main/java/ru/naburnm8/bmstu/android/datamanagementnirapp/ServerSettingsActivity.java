@@ -8,6 +8,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.textfield.TextInputEditText;
+import ru.naburnm8.bmstu.android.datamanagementnirapp.RESTDatabase.RESTDBOutput;
+import ru.naburnm8.bmstu.android.datamanagementnirapp.RESTDatabase.databaseAPI.connection.GETConnectionAPI;
 import ru.naburnm8.bmstu.android.datamanagementnirapp.asyncDatabase.AsyncReceiver;
 import ru.naburnm8.bmstu.android.datamanagementnirapp.asyncDatabase.databaseData.DatabaseQuery;
 import ru.naburnm8.bmstu.android.datamanagementnirapp.asyncDatabase.dialects.MicrosoftSQLOperator;
@@ -17,7 +19,7 @@ import ru.naburnm8.bmstu.android.datamanagementnirapp.database.AsyncDBOutput;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-public class ServerSettingsActivity extends AppCompatActivity implements AsyncReceiver {
+public class ServerSettingsActivity extends AppCompatActivity implements RESTDBOutput {
     Button saveButton, testButton;
     TextInputEditText serverSocket;
     TextView testLog;
@@ -52,35 +54,17 @@ public class ServerSettingsActivity extends AppCompatActivity implements AsyncRe
 
     }
     void testServerConnection(String socket){
-        serverSocketString = socket;
-        DatabaseQuery query = new DatabaseQuery(socket, "connectionTest", "con", "SELECT \n" +
-                "    SERVERPROPERTY('ProductVersion') AS ProductVersion,\n" +
-                "    SERVERPROPERTY('ProductLevel') AS ProductLevel,\n" +
-                "    SERVERPROPERTY('Edition') AS Edition,\n" +
-                "    SERVERPROPERTY('EngineEdition') AS EngineEdition,\n" +
-                "    SERVERPROPERTY('MachineName') AS MachineName", this);
-        new MicrosoftSQLOperator().execute(query);
+        GETConnectionAPI getConnectionAPI = new GETConnectionAPI(this, socket);
+        getConnectionAPI.execute();
     }
 
     @Override
     public void setLogged(String logged) {
-        if (logged == null) {
-            return;
-        }
-        if (logged.contains("Login failed") || logged.contains("Successful")){
-            testLog.setText("Server reachable");
-            saveButton.setEnabled(true);
-            return;
-        }
         testLog.setText(logged);
     }
 
     @Override
-    public void setData(ArrayList<ArrayList<String>> results) {
-        if(results == null){return;}
-        for (ArrayList<String> row : results) {
-            if (row == null) {return;}
-        }
-        Toast.makeText(this, results.toString(), Toast.LENGTH_SHORT).show();
+    public void setData(Object results) {
+        //in this activity data is ignored
     }
 }

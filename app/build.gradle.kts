@@ -38,5 +38,12 @@ dependencies {
     implementation("com.microsoft.sqlserver:mssql-jdbc:12.6.2.jre11")
     implementation("org.postgresql:postgresql:42.3.10")
     implementation("net.sourceforge.jtds:jtds:1.3.1")
+    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation ("com.squareup.okhttp3:logging-interceptor:4.9.0")
+    implementation ("androidx.lifecycle:lifecycle-viewmodel:2.3.1")
+    implementation ("androidx.lifecycle:lifecycle-livedata:2.3.1")
+    implementation ("androidx.lifecycle:lifecycle-runtime:2.3.1")
+    implementation ("com.google.code.gson:gson:2.6.2")
 
 }
