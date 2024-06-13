@@ -3,6 +3,7 @@ package ru.naburnm8.bmstu.android.datamanagementnirapp.asyncDatabase.dialects;
 import android.util.Log;
 import ru.naburnm8.bmstu.android.datamanagementnirapp.asyncDatabase.DatabaseOperator;
 
+@Deprecated
 public class MicrosoftSQLOperator extends DatabaseOperator {
     @Override
     public String getJDBC_URLfromString(String serverURL) {

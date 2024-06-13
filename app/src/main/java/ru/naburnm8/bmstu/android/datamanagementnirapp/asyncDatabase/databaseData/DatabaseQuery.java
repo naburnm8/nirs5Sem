@@ -2,6 +2,7 @@ package ru.naburnm8.bmstu.android.datamanagementnirapp.asyncDatabase.databaseDat
 
 import ru.naburnm8.bmstu.android.datamanagementnirapp.asyncDatabase.AsyncReceiver;
 
+@Deprecated
 public class DatabaseQuery {
     private String URL;
     private String JDBC_USERNAME;

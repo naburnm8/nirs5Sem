@@ -4,6 +4,7 @@ import android.util.Log;
 import ru.naburnm8.bmstu.android.datamanagementnirapp.asyncDatabase.DatabaseOperator;
 
 //Driver issue. Won't work.
+@Deprecated
 public class PostgreSQLOperator extends DatabaseOperator {
     @Override
     public String getJDBC_URLfromString(String serverURL) {

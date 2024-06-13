@@ -4,6 +4,7 @@ import ru.naburnm8.bmstu.android.datamanagementnirapp.asyncDatabase.AsyncReceive
 
 import java.util.ArrayList;
 
+@Deprecated
 public class DatabaseResult {
     private String log;
     private ArrayList<ArrayList<String>> results;

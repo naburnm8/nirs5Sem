@@ -8,7 +8,7 @@ import ru.naburnm8.bmstu.android.datamanagementnirapp.asyncDatabase.databaseData
 import java.sql.*;
 import java.util.ArrayList;
 
-
+@Deprecated
 abstract public class DatabaseOperator extends AsyncTask<DatabaseQuery, String, DatabaseResult> implements DatabaseInterface {
     @Override
     protected DatabaseResult doInBackground(DatabaseQuery... params) {
