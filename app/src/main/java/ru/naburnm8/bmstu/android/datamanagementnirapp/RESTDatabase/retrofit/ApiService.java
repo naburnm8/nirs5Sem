@@ -15,13 +15,13 @@ public interface ApiService {
     Call<LoginResponse> login(@Body LoginRequest loginRequest);
 
     @POST("auth/register")
-    Call<String> register(@Body RegisterRequest registerRequest);
+    Call<Message> register(@Body RegisterRequest registerRequest);
 
     @GET("api/connection")
-    Call<String> getConnection();
+    Call<Message> getConnection();
 
     @GET("api/connection/info")
-    Call<String> getConnectionInfo();
+    Call<Message> getConnectionInfo();
 
     //Supply
 

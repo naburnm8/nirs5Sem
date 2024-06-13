@@ -8,8 +8,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ApiClient {
     private static Retrofit retrofit = null;
 
-    public static Retrofit getRetrofitBool(String baseUrl, boolean forceCreate) {
+    public static Retrofit getRetrofitBool(String socket, boolean forceCreate) {
         if (retrofit == null || forceCreate) {
+            String baseUrl = "http://" + socket + "/";
             HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
             logging.setLevel(HttpLoggingInterceptor.Level.BODY);
             OkHttpClient client = new OkHttpClient.Builder().addInterceptor(logging).build();

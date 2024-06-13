@@ -24,6 +24,7 @@ public class ServerSettingsActivity extends AppCompatActivity implements RESTDBO
     TextInputEditText serverSocket;
     TextView testLog;
     String serverSocketString;
+    String serverSocketStringChecking;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +46,7 @@ public class ServerSettingsActivity extends AppCompatActivity implements RESTDBO
             if (socketEditable != null) {
                 socket = socketEditable.toString();
             }
+            serverSocketStringChecking = socket;
             testLog.setText(R.string.connecting);
             saveButton.setEnabled(false);
             testServerConnection(socket);
@@ -61,10 +63,15 @@ public class ServerSettingsActivity extends AppCompatActivity implements RESTDBO
     @Override
     public void setLogged(String logged) {
         testLog.setText(logged);
+        if (logged.equals("borovik")){
+            serverSocketString = serverSocketStringChecking;
+            saveButton.setEnabled(true);
+            testLog.setText(R.string.successfulServer);
+        }
     }
 
     @Override
     public void setData(Object results) {
-        //in this activity data is ignored
+        //data is ignored in this activity
     }
 }

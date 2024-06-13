@@ -5,6 +5,7 @@ import android.util.Log;
 import retrofit2.Call;
 import retrofit2.Response;
 import ru.naburnm8.bmstu.android.datamanagementnirapp.RESTDatabase.RESTDBOutput;
+import ru.naburnm8.bmstu.android.datamanagementnirapp.RESTDatabase.models.Message;
 import ru.naburnm8.bmstu.android.datamanagementnirapp.RESTDatabase.retrofit.ApiClient;
 import ru.naburnm8.bmstu.android.datamanagementnirapp.RESTDatabase.retrofit.ApiService;
 
@@ -18,14 +19,16 @@ public class GETConnectionAPI extends AsyncTask<Void, Void, String> {
 
     @Override
     protected String doInBackground(Void... voids) {
-        Call<String> call = apiService.getConnection();
+
+        Call<Message> call = apiService.getConnection();
         try {
-            Response<String> response = call.execute();
+            Response<Message> response = call.execute();
             if (response.isSuccessful()) {
-                return response.body();
+                return response.body().getMessage();
             }
         } catch (Exception e) {
             Log.println(Log.ERROR, "GetConnectionAPI", e.toString());
+            context.setLogged(e.getMessage());
         }
         return null;
     }
@@ -34,6 +37,8 @@ public class GETConnectionAPI extends AsyncTask<Void, Void, String> {
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
         context.setData(s);
-        context.setLogged(s);
+        if (s != null) {
+            context.setLogged(s);
+        }
     }
 }
