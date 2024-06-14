@@ -60,6 +60,7 @@ public class ActionData implements Serializable {
         return out;
     }
 
+
     public String getAffected() {
         return affected;
     }
