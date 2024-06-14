@@ -12,6 +12,7 @@ import ru.naburnm8.bmstu.android.datamanagementnirapp.RESTDatabase.retrofit.ApiS
 public class GETConnectionAPI extends AsyncTask<Void, Void, String> {
     RESTDBOutput context;
     ApiService apiService;
+    String lastLog;
     public GETConnectionAPI(RESTDBOutput context, String baseUrl) {
         this.context = context;
         this.apiService = ApiClient.getRetrofit(baseUrl).create(ApiService.class);
@@ -19,16 +20,15 @@ public class GETConnectionAPI extends AsyncTask<Void, Void, String> {
 
     @Override
     protected String doInBackground(Void... voids) {
-
-        Call<Message> call = apiService.getConnection();
         try {
+            Call<Message> call = apiService.getConnection();
             Response<Message> response = call.execute();
             if (response.isSuccessful()) {
                 return response.body().getMessage();
             }
         } catch (Exception e) {
             Log.println(Log.ERROR, "GetConnectionAPI", e.toString());
-            context.setLogged(e.getMessage());
+            lastLog = e.getMessage();
         }
         return null;
     }
@@ -37,6 +37,7 @@ public class GETConnectionAPI extends AsyncTask<Void, Void, String> {
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
         context.setData(s);
+        context.setLogged(lastLog);
         if (s != null) {
             context.setLogged(s);
         }

@@ -10,10 +10,14 @@
     <string name="login">Login</string>
     <string name="password">Password</string>
     <string name="submit">Submit</string>
-    <string name="connecting">Connecting…</string>
+    <string name="connecting">connecting…</string>
     <string name="currentLogin">Currently log on as: </string>
-    <string name="currentServerSocket">Current server socket: </string>
+    <string name="currentServerSocket">Server </string>
     <string name="serverTest">Test connection</string>
     <string name="mainMenuHeader">Available actions: </string>
     <string name="successfulServer">Server reachable</string>
+    <string name="serverStatusConnected">connected</string>
+    <string name="serverStatusDisconnected">disconnected</string>
+    <string name="unauthorized">Unauthorized</string>
+    <string name="serverUnreachable">Server unreachable</string>
 </resources>

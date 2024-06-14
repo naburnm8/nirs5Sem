@@ -55,7 +55,7 @@ public class ServerSettingsActivity extends AppCompatActivity implements RESTDBO
         testLog = findViewById(R.id.testLog);
 
     }
-    void testServerConnection(String socket){
+    protected void testServerConnection(String socket){
         GETConnectionAPI getConnectionAPI = new GETConnectionAPI(this, socket);
         getConnectionAPI.execute();
     }
