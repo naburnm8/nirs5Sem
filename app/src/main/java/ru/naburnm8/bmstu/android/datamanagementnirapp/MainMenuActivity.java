@@ -7,15 +7,22 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import ru.naburnm8.bmstu.android.datamanagementnirapp.RESTDatabase.RESTDBOutput;
 import ru.naburnm8.bmstu.android.datamanagementnirapp.RESTDatabase.databaseAPI.connection.GETConnectionAPI;
+import ru.naburnm8.bmstu.android.datamanagementnirapp.recyclerViewStuff.actionsList.ActionAdapter;
+import ru.naburnm8.bmstu.android.datamanagementnirapp.recyclerViewStuff.actionsList.ActionData;
+
+import java.util.ArrayList;
 
 public class MainMenuActivity extends AppCompatActivity implements RESTDBOutput {
     TextView serverStatus, serverSocket, usernameText;
     RecyclerView actionsList;
     Button refreshButton;
     String serverSocketString;
+    ActionAdapter actionAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         SharedPreferences settings = getSharedPreferences("settings", MODE_PRIVATE);
@@ -34,18 +41,16 @@ public class MainMenuActivity extends AppCompatActivity implements RESTDBOutput 
             serverStatus.setText(getString(R.string.connecting));
             testServerConnection(serverSocketString);
         });
-
-
         if (!serverSetUp) {
             Intent intent = new Intent(this, ServerSettingsActivity.class);
             startActivity(intent);
             finish();
         }
-
         testServerConnection(serverSocketString);
-
-
-
+        ArrayList<ActionData> actionData = (ArrayList<ActionData>) ActionData.generateUnauthorizedActions();
+        actionAdapter = new ActionAdapter(this, actionData);
+        actionsList.setAdapter(actionAdapter);
+        actionsList.setLayoutManager(new LinearLayoutManager(this));
     }
 
     protected void testServerConnection(String socket){

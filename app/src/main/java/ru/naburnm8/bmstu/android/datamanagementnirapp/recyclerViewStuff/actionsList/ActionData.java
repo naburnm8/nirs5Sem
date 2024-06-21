@@ -60,12 +60,55 @@ public class ActionData implements Serializable {
         return out;
     }
 
+    public static List<ActionData> generateAdminActions(){
+        ArrayList<ActionData> out = new ArrayList<>();
+        out.add(new ActionData("RWU Catalogue", new String[]{"Read", "Write", "Update"}, "Table controls", "catalogue"));
+        out.add(new ActionData("RWU Clients", new String[]{"Read", "Write", "Update"}, "Table controls", "clients"));
+        out.add(new ActionData("RWU Orders", new String[]{"Read", "Write", "Update"}, "Table controls", "orders"));
+        out.add(new ActionData("RWU Storage", new String[]{"Read", "Write", "Update"}, "Table controls", "storage"));
+        out.add(new ActionData("RWU Supply", new String[]{"Read", "Write", "Update"}, "Table controls", "supply"));
+        out.add(new ActionData("RWU Users", new String[]{"Read", "Write", "Update"}, "Users control", "users"));
+        return out;
+    }
 
+    public static List<ActionData> generateConsultantActions(){
+        ArrayList<ActionData> out = new ArrayList<>();
+        out.add(new ActionData("R Catalogue", new String[]{"Read"}, "Table controls", "catalogue"));
+        out.add(new ActionData("RWU Clients", new String[]{"Read", "Write", "Update"}, "Table controls", "clients"));
+        out.add(new ActionData("RWU Orders", new String[]{"Read", "Write", "Update"}, "Table controls", "orders"));
+        out.add(new ActionData("R Storage", new String[]{"Read"}, "Table controls", "storage"));
+        out.add(new ActionData("R Supply", new String[]{"Read"}, "Table controls", "supply"));
+        return out;
+    }
+
+    public static List<ActionData> generateStorageActions(){
+        ArrayList<ActionData> out = new ArrayList<>();
+        out.add(new ActionData("R Catalogue", new String[]{"Read"}, "Table controls", "catalogue"));
+        out.add(new ActionData("RWU Storage", new String[]{"Read", "Write", "Update"}, "Table controls", "storage"));
+        out.add(new ActionData("R Supply", new String[]{"Read"}, "Table controls", "supply"));
+        return out;
+    }
     public String getAffected() {
         return affected;
     }
 
     public void setAffected(String affected) {
         this.affected = affected;
+    }
+
+    public int getPicture() {
+        return picture;
+    }
+
+    public void setPicture(int picture) {
+        this.picture = picture;
+    }
+
+    public String getPermissionsString(){
+        String out = "";
+        for(String permission : permissions){
+            out += permission + ", ";
+        }
+        return out.substring(0, out.length()-2);
     }
 }
