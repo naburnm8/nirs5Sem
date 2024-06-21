@@ -36,7 +36,8 @@ public class GETConnectionAPI extends AsyncTask<Void, Void, String> {
     @Override
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
-        context.setData(s);
+        Message recorded = new Message(s);
+        context.setData(recorded);
         context.setLogged(lastLog);
         if (s != null) {
             context.setLogged(s);

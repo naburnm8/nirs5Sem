@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import ru.naburnm8.bmstu.android.datamanagementnirapp.RESTDatabase.RESTDBOutput;
 import ru.naburnm8.bmstu.android.datamanagementnirapp.RESTDatabase.databaseAPI.connection.GETConnectionAPI;
+import ru.naburnm8.bmstu.android.datamanagementnirapp.RESTDatabase.models.Recordable;
 import ru.naburnm8.bmstu.android.datamanagementnirapp.recyclerViewStuff.actionsList.ActionAdapter;
 import ru.naburnm8.bmstu.android.datamanagementnirapp.recyclerViewStuff.actionsList.ActionData;
 
@@ -84,7 +85,7 @@ public class MainMenuActivity extends AppCompatActivity implements RESTDBOutput 
     }
 
     @Override
-    public void setData(Object data) {
+    public void setData(Recordable data) {
 
     }
 }

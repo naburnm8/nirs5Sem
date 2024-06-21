@@ -1,6 +1,11 @@
 package ru.naburnm8.bmstu.android.datamanagementnirapp.RESTDatabase.models.authmodels;
 
-public class LoginResponse {
+import ru.naburnm8.bmstu.android.datamanagementnirapp.RESTDatabase.models.Recordable;
+
+import java.util.ArrayList;
+
+
+public class LoginResponse implements Recordable {
     private String token;
     private final String TYPE = "Bearer";
     private int id;
@@ -48,5 +53,20 @@ public class LoginResponse {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    @Override
+    public ArrayList<String> parseToRecord() {
+        ArrayList<String> record = new ArrayList<>();
+        record.add(token);
+        record.add(Integer.toString(id));
+        record.add(username);
+        record.add(role);
+        return record;
+    }
+
+    @Override
+    public String parseToString() {
+        return parseToRecord().toString();
     }
 }
