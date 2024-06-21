@@ -57,6 +57,9 @@ public class LoginActivity extends AppCompatActivity implements RESTDBOutput {
 
     @Override
     public void setData(Recordable data) {
-
+        if (data == null) {
+            return;
+        }
+        Toast.makeText(this, data.parseToString(), Toast.LENGTH_SHORT).show();
     }
 }
