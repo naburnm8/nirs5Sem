@@ -22,51 +22,51 @@
             android:id="@+id/actionName"
             android:layout_marginBottom="0dp"
             android:layout_alignParentStart="true"
-            android:layout_marginStart="98dp"
+            android:layout_marginStart="97dp"
             android:textSize="20sp"
-            android:layout_marginTop="23dp"
+            android:layout_marginTop="13dp"
             android:layout_alignParentTop="true"
             android:layout_toStartOf="@+id/player2Name"
             android:layout_marginEnd="117dp"
             android:layout_alignBottom="@+id/player2Name"
-            android:textAlignment="viewStart"/>
+            android:textAlignment="textStart"/>
 
     <TextView
             android:text="01.01.1970 00:00 - 02.01.1970 00:01"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/permissionsList"
-            android:textAlignment="center"
+            android:textAlignment="textEnd"
             android:layout_alignParentBottom="true"
-            android:layout_marginBottom="7dp"
+            android:layout_marginBottom="6dp"
             android:layout_alignParentEnd="true"
-            android:layout_marginEnd="82dp"
+            android:layout_marginEnd="20dp"
             android:layout_alignParentStart="true"
-            android:layout_marginStart="97dp"
-            android:layout_marginTop="79dp"
+            android:layout_marginStart="159dp"
+            android:layout_marginTop="80dp"
             android:layout_alignParentTop="true"/>
 
     <TextView
             android:text="Player2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="141dp"
+            android:layout_height="42dp"
             android:id="@+id/actionDescription"
             android:textSize="12sp"
             android:layout_alignParentEnd="true"
-            android:layout_marginEnd="186dp"
-            android:layout_marginTop="63dp"
+            android:layout_marginEnd="21dp"
+            android:layout_marginTop="11dp"
             android:layout_alignParentTop="true"
-            android:textAlignment="center"/>
+            android:textAlignment="textEnd"/>
 
     <ImageView
-            android:layout_width="68dp"
-            android:layout_height="56dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             app:srcCompat="@drawable/ic_launcher_background"
             android:id="@+id/actionImage"
             android:layout_alignParentBottom="true"
-            android:layout_marginBottom="25dp"
+            android:layout_marginBottom="12dp"
             android:layout_alignParentEnd="true"
-            android:layout_marginEnd="336dp"/>
+            android:layout_marginEnd="325dp"/>
 
 
 </RelativeLayout>

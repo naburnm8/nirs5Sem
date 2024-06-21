@@ -19,7 +19,7 @@ import java.util.ArrayList;
 public class MainMenuActivity extends AppCompatActivity implements RESTDBOutput {
     TextView serverStatus, serverSocket, usernameText;
     RecyclerView actionsList;
-    Button refreshButton;
+    Button refreshButton, accountsButton;
     String serverSocketString;
     ActionAdapter actionAdapter;
 
@@ -51,6 +51,13 @@ public class MainMenuActivity extends AppCompatActivity implements RESTDBOutput 
         actionAdapter = new ActionAdapter(this, actionData);
         actionsList.setAdapter(actionAdapter);
         actionsList.setLayoutManager(new LinearLayoutManager(this));
+
+        accountsButton = findViewById(R.id.accountsButton);
+        accountsButton.setOnClickListener(view -> {
+            Intent intent = new Intent(this, AccountSettingsActivity.class);
+            startActivity(intent);
+        });
+
     }
 
     protected void testServerConnection(String socket){
