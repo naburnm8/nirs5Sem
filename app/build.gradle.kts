@@ -45,5 +45,6 @@ dependencies {
     implementation ("androidx.lifecycle:lifecycle-livedata:2.3.1")
     implementation ("androidx.lifecycle:lifecycle-runtime:2.3.1")
     implementation ("com.google.code.gson:gson:2.6.2")
+    implementation ("androidx.security:security-crypto:1.0.0")
 
 }

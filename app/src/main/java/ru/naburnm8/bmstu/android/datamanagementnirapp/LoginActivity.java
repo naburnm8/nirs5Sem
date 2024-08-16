@@ -6,16 +6,24 @@ import android.text.Editable;
 import android.widget.Button;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.security.crypto.EncryptedSharedPreferences;
+import androidx.security.crypto.MasterKeys;
 import com.google.android.material.textfield.TextInputEditText;
 import ru.naburnm8.bmstu.android.datamanagementnirapp.RESTDatabase.RESTDBOutput;
 import ru.naburnm8.bmstu.android.datamanagementnirapp.RESTDatabase.databaseAPI.login.LoginAPI;
 import ru.naburnm8.bmstu.android.datamanagementnirapp.RESTDatabase.models.Recordable;
 import ru.naburnm8.bmstu.android.datamanagementnirapp.RESTDatabase.models.authmodels.LoginRequest;
 
+import java.io.IOException;
+import java.security.GeneralSecurityException;
+import java.util.ArrayList;
+
 public class LoginActivity extends AppCompatActivity implements RESTDBOutput {
     Button loginButton;
     TextInputEditText username, password;
     String serverSocketString;
+    SharedPreferences sharedPreferences;
+    SharedPreferences sharedPreferencesEncrypted;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +68,23 @@ public class LoginActivity extends AppCompatActivity implements RESTDBOutput {
         if (data == null) {
             return;
         }
-        Toast.makeText(this, data.parseToString(), Toast.LENGTH_SHORT).show();
+        try {
+            String masterKeys = MasterKeys.getOrCreate(MasterKeys.AES256_GCM_SPEC);
+            sharedPreferencesEncrypted = EncryptedSharedPreferences.create("account", masterKeys,
+                    getApplicationContext(), EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
+                    EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM);
+            ArrayList<String> dataArray = data.parseToRecord();
+            sharedPreferencesEncrypted.edit().putString("token", dataArray.get(0)).apply();
+            sharedPreferencesEncrypted.edit().putString("username", dataArray.get(2)).apply();
+            sharedPreferencesEncrypted.edit().putString("role", dataArray.get(3)).apply();
+            sharedPreferences = getSharedPreferences("account", MODE_PRIVATE);
+            sharedPreferences.edit().putBoolean("isLoggedIn", true).apply();
+        } catch (GeneralSecurityException | IOException e) {
+            Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show();
+        }
+        //Toast.makeText(this, sharedPreferencesEncrypted.getString("token", ""), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, sharedPreferencesEncrypted.getString("username", ""), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, sharedPreferencesEncrypted.getString("role", ""), Toast.LENGTH_SHORT).show();
+        finish();
     }
 }

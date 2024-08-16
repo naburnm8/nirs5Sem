@@ -21,4 +21,5 @@
     <string name="unauthorized">Unauthorized</string>
     <string name="serverUnreachable">Server unreachable</string>
     <string name="wrongUsernameOrPassword">Wrong username or password</string>
+    <string name="failedLogon">Logon failed</string>
 </resources>

@@ -16,5 +16,6 @@ public class AccountSettingsActivity extends AppCompatActivity {
             Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
         }
+        setContentView(R.layout.account_settings);
     }
 }

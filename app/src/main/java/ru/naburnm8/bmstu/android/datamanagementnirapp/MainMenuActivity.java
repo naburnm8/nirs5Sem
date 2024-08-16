@@ -9,13 +9,18 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.security.crypto.EncryptedSharedPreferences;
+import androidx.security.crypto.MasterKeys;
 import ru.naburnm8.bmstu.android.datamanagementnirapp.RESTDatabase.RESTDBOutput;
 import ru.naburnm8.bmstu.android.datamanagementnirapp.RESTDatabase.databaseAPI.connection.GETConnectionAPI;
 import ru.naburnm8.bmstu.android.datamanagementnirapp.RESTDatabase.models.Recordable;
 import ru.naburnm8.bmstu.android.datamanagementnirapp.recyclerViewStuff.actionsList.ActionAdapter;
 import ru.naburnm8.bmstu.android.datamanagementnirapp.recyclerViewStuff.actionsList.ActionData;
 
+import java.io.IOException;
+import java.security.GeneralSecurityException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainMenuActivity extends AppCompatActivity implements RESTDBOutput {
     TextView serverStatus, serverSocket, usernameText;
@@ -23,6 +28,8 @@ public class MainMenuActivity extends AppCompatActivity implements RESTDBOutput 
     Button refreshButton, accountsButton;
     String serverSocketString;
     ActionAdapter actionAdapter;
+    SharedPreferences sharedPreferencesEncrypted;
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +59,22 @@ public class MainMenuActivity extends AppCompatActivity implements RESTDBOutput 
         actionAdapter = new ActionAdapter(this, actionData);
         actionsList.setAdapter(actionAdapter);
         actionsList.setLayoutManager(new LinearLayoutManager(this));
-
+        try{
+        String masterKeys = MasterKeys.getOrCreate(MasterKeys.AES256_GCM_SPEC);
+        sharedPreferencesEncrypted = EncryptedSharedPreferences.create("account", masterKeys,
+                getApplicationContext(), EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
+                EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM);
+        } catch (GeneralSecurityException | IOException e) {
+            Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+        }
+        sharedPreferences = getSharedPreferences("account", MODE_PRIVATE);
+        if (sharedPreferences.getBoolean("isLoggedIn", false)) {
+            usernameText.setText(sharedPreferencesEncrypted.getString("username", ""));
+            ArrayList<ActionData> actionData1 = (ArrayList<ActionData>) getActions(sharedPreferencesEncrypted.getString("role", ""));
+            System.out.println(actionData1);
+            actionAdapter = new ActionAdapter(this, actionData1);
+            actionsList.setAdapter(actionAdapter);
+        }
         accountsButton = findViewById(R.id.accountsButton);
         accountsButton.setOnClickListener(view -> {
             Intent intent = new Intent(this, AccountSettingsActivity.class);
@@ -87,5 +109,30 @@ public class MainMenuActivity extends AppCompatActivity implements RESTDBOutput 
     @Override
     public void setData(Recordable data) {
 
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (sharedPreferences.getBoolean("isLoggedIn", false)) {
+            usernameText.setText(sharedPreferencesEncrypted.getString("username", ""));
+            ArrayList<ActionData> actionData1 = (ArrayList<ActionData>) getActions(sharedPreferencesEncrypted.getString("role", ""));
+            System.out.println(actionData1);
+            actionAdapter = new ActionAdapter(this, actionData1);
+            actionsList.setAdapter(actionAdapter);
+        }
+    }
+
+    private List<ActionData> getActions(String role){
+        if(role.contains("ADMINISTRATOR")){
+            return ActionData.generateAdminActions();
+        }
+        if(role.contains("CONSULTANT")){
+            return ActionData.generateConsultantActions();
+        }
+        if (role.contains("STORAGE")){
+            return ActionData.generateStorageActions();
+        }
+        return ActionData.generateUnauthorizedActions();
     }
 }
