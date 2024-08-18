@@ -114,13 +114,12 @@ public class MainMenuActivity extends AppCompatActivity implements RESTDBOutput 
     @Override
     public void onResume() {
         super.onResume();
-        if (sharedPreferences.getBoolean("isLoggedIn", false)) {
-            usernameText.setText(sharedPreferencesEncrypted.getString("username", ""));
-            ArrayList<ActionData> actionData1 = (ArrayList<ActionData>) getActions(sharedPreferencesEncrypted.getString("role", ""));
-            System.out.println(actionData1);
-            actionAdapter = new ActionAdapter(this, actionData1);
-            actionsList.setAdapter(actionAdapter);
-        }
+        usernameText.setText(sharedPreferencesEncrypted.getString("username", ""));
+        ArrayList<ActionData> actionData1 = (ArrayList<ActionData>) getActions(sharedPreferencesEncrypted.getString("role", ""));
+        System.out.println(actionData1);
+        actionAdapter = new ActionAdapter(this, actionData1);
+        actionsList.setAdapter(actionAdapter);
+
     }
 
     private List<ActionData> getActions(String role){

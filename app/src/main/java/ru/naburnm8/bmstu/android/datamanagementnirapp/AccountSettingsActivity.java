@@ -44,8 +44,18 @@ public class AccountSettingsActivity extends AppCompatActivity {
         roleText.setText(sharedPreferencesEncrypted.getString("role", "ERROR"));
         logoutButton.setOnClickListener(view -> {
             sharedPreferences.edit().putBoolean("isLoggedIn", false).apply();
+            sharedPreferencesEncrypted.edit().putString("username", "").apply();
+            sharedPreferencesEncrypted.edit().putString("role", "").apply();
+            sharedPreferencesEncrypted.edit().putString("token", "").apply();
             finish();
         });
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        usernameText.setText(sharedPreferencesEncrypted.getString("username", "ERROR"));
+        roleText.setText(sharedPreferencesEncrypted.getString("role", "ERROR"));
     }
 }
