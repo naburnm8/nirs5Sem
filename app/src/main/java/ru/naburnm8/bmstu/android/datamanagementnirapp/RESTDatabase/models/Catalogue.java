@@ -35,4 +35,8 @@ public class Catalogue {
     public void setItemPrice(int itemPrice) {
         this.itemPrice = itemPrice;
     }
+    @Override
+    public String toString() {
+        return "Catalogue [id=" + id + ", itemName=" + itemName + ", itemPrice=" + itemPrice;
+    }
 }
