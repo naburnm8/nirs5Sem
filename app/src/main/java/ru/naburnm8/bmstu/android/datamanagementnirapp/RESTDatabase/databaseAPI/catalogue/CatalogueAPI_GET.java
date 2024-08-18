@@ -26,7 +26,7 @@ public class CatalogueAPI_GET extends AsyncTask<Void, Void, CatalogueResponse> {
     @Override
     protected CatalogueResponse doInBackground(Void... voids) {
         try{
-            Call<List<Catalogue>> call = apiService.getAllCatalogue(token);
+            Call<List<Catalogue>> call = apiService.getAllCatalogue("Bearer " + token);
             Response<List<Catalogue>> response = call.execute();
             if(response.isSuccessful()){
                 if(response.body() != null){

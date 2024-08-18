@@ -37,6 +37,6 @@ public class Catalogue {
     }
     @Override
     public String toString() {
-        return "Catalogue [id=" + id + ", itemName=" + itemName + ", itemPrice=" + itemPrice;
+        return "id=" + id + " itemName=" + itemName + " itemPrice=" + itemPrice;
     }
 }

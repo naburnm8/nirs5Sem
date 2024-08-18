@@ -71,6 +71,9 @@ public class AccountSettingsActivity extends AppCompatActivity implements RESTDB
 
     @Override
     public void setLogged(String logged) {
+        if (logged == null){
+            return;
+        }
         Toast.makeText(getApplicationContext(), logged, Toast.LENGTH_LONG).show();
     }
 
@@ -78,6 +81,7 @@ public class AccountSettingsActivity extends AppCompatActivity implements RESTDB
     public void setData(Recordable data) {
         if (data != null){
             Toast.makeText(getApplicationContext(), data.parseToString(), Toast.LENGTH_LONG).show();
+            System.out.println(data.parseToRecord());
         }
     }
 }
