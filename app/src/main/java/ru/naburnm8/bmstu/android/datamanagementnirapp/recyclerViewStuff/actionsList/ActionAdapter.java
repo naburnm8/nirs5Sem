@@ -1,14 +1,15 @@
 package ru.naburnm8.bmstu.android.datamanagementnirapp.recyclerViewStuff.actionsList;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import org.jetbrains.annotations.NotNull;
 import ru.naburnm8.bmstu.android.datamanagementnirapp.R;
+import ru.naburnm8.bmstu.android.datamanagementnirapp.tableViewActivity.CatalogueViewActivity;
 
 import java.util.ArrayList;
 
@@ -47,7 +48,30 @@ public class ActionAdapter extends RecyclerView.Adapter<ActionViewHolder>{
     }
 
     private void handleClick(int index) {
-        Toast.makeText(context, actions.get(index).getActionName(), Toast.LENGTH_SHORT).show();
+        String table = actions.get(index).getAffected();
+        switch (table) {
+            case "catalogue":
+                //Toast.makeText(context, actions.get(index).getAffected(), Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(context, CatalogueViewActivity.class);
+                context.startActivity(intent);
+                break;
+            case "clients":
+                //Toast.makeText(context, actions.get(index).getAffected(), Toast.LENGTH_SHORT).show();
+                break;
+            case "orders":
+                //Toast.makeText(context, actions.get(index).getAffected(), Toast.LENGTH_SHORT).show();
+                break;
+            case "storage":
+                //Toast.makeText(context, actions.get(index).getAffected(), Toast.LENGTH_SHORT).show();
+                break;
+            case "supply":
+                //Toast.makeText(context, actions.get(index).getAffected(), Toast.LENGTH_SHORT).show();
+                break;
+            case "users":
+                //Toast.makeText(context, actions.get(index).getAffected(), Toast.LENGTH_SHORT).show();
+                break;
+        }
+
     }
 
     @Override

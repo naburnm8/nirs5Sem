@@ -1,11 +1,15 @@
 package ru.naburnm8.bmstu.android.datamanagementnirapp;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.security.crypto.EncryptedSharedPreferences;
 import androidx.security.crypto.MasterKeys;
@@ -54,10 +58,13 @@ public class AccountSettingsActivity extends AppCompatActivity implements RESTDB
         });
 
         settingsButton.setOnClickListener(view -> {
+            /*
             String baseUrl = sharedPreferences.getString("serverSocket", "");
             String token = sharedPreferencesEncrypted.getString("token", "");
             CatalogueAPI_GET catalogueAPI_get = new CatalogueAPI_GET(this, baseUrl, token);
             catalogueAPI_get.execute();
+             */
+            showProtectionDialogue();
         });
 
     }
@@ -83,5 +90,35 @@ public class AccountSettingsActivity extends AppCompatActivity implements RESTDB
             Toast.makeText(getApplicationContext(), data.parseToString(), Toast.LENGTH_LONG).show();
             System.out.println(data.parseToRecord());
         }
+    }
+
+    protected void showProtectionDialogue(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(R.string.confirmation);
+        builder.setMessage(R.string.confirmationMessage);
+
+        builder.setPositiveButton(R.string.yes, (dialog, which) -> {
+            sharedPreferencesEncrypted.edit().putString("username", "").apply();
+            sharedPreferencesEncrypted.edit().putString("role", "").apply();
+            sharedPreferencesEncrypted.edit().putString("token", "").apply();
+            sharedPreferences.edit().clear().apply();
+            sharedPreferences = getSharedPreferences("settings", MODE_PRIVATE);
+            sharedPreferences.edit().clear().apply();
+
+            restart();
+        });
+
+        builder.setNegativeButton(R.string.no, (dialog, which) -> {
+            dialog.dismiss();
+        });
+
+        AlertDialog alert = builder.create();
+        alert.show();
+    }
+
+    protected void restart(){
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
     }
 }

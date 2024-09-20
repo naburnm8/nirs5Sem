@@ -1,0 +1,39 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="horizontal"
+              android:padding="16dp">
+
+    <TextView
+            android:text="ID"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/id_catalogue"
+            android:layout_weight="1"/>
+
+    <TextView
+            android:id="@+id/catalogue_name"
+            android:layout_width="101dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Item Name"/>
+
+    <TextView
+            android:id="@+id/catalogue_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Item Price"/>
+
+    <Button
+            android:id="@+id/editCatalogueButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Edit"/>
+
+    <Button
+            android:id="@+id/deleteCatalogueButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Delete"/>
+
+</LinearLayout>

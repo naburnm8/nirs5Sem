@@ -64,6 +64,9 @@ public class ServerSettingsActivity extends AppCompatActivity implements RESTDBO
     @Override
     public void setLogged(String logged) {
         testLog.setText(logged);
+        if(logged == null){
+            return;
+        }
         if (logged.equals("borovik")){
             serverSocketString = serverSocketStringChecking;
             saveButton.setEnabled(true);

@@ -2,7 +2,7 @@
     <string name="app_name">dataManagementNirApp</string>
     <string name="noServerSetupNotice">You have no server set up</string>
     <string name="setUpAServer">Set up a server</string>
-    <string name="headerServerSetup">Setting up an SQL server</string>
+    <string name="headerServerSetup">Server setup</string>
     <string name="serverSocket">Server socket</string>
     <string name="serverTestLog">Log will be here</string>
     <string name="serverSettingsSubmit">Save settings</string>
@@ -25,5 +25,10 @@
     <string name="username">Username: </string>
     <string name="role">Role: </string>
     <string name="logout">Logout</string>
-    <string name="settings">Settings</string>
+    <string name="settings">Clear app\'s memory</string>
+    <string name="confirmation">Confirmation</string>
+    <string name="confirmationMessage">Are you sure you want to wipe the app\'s memory?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="addAnEntry">Add an entry</string>
 </resources>
