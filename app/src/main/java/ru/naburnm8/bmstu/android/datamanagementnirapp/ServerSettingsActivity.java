@@ -5,20 +5,12 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.textfield.TextInputEditText;
 import ru.naburnm8.bmstu.android.datamanagementnirapp.RESTDatabase.RESTDBOutput;
 import ru.naburnm8.bmstu.android.datamanagementnirapp.RESTDatabase.databaseAPI.connection.GETConnectionAPI;
 import ru.naburnm8.bmstu.android.datamanagementnirapp.RESTDatabase.models.Recordable;
-import ru.naburnm8.bmstu.android.datamanagementnirapp.asyncDatabase.AsyncReceiver;
-import ru.naburnm8.bmstu.android.datamanagementnirapp.asyncDatabase.databaseData.DatabaseQuery;
-import ru.naburnm8.bmstu.android.datamanagementnirapp.asyncDatabase.dialects.MicrosoftSQLOperator;
-import ru.naburnm8.bmstu.android.datamanagementnirapp.asyncDatabase.dialects.PostgreSQLOperator;
-import ru.naburnm8.bmstu.android.datamanagementnirapp.database.AsyncDBOutput;
 
-import java.sql.ResultSet;
-import java.util.ArrayList;
 
 public class ServerSettingsActivity extends AppCompatActivity implements RESTDBOutput {
     Button saveButton, testButton;

@@ -31,4 +31,7 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="addAnEntry">Add an entry</string>
+    <string name="catalogue_name">Item name</string>
+    <string name="catalogue_price">Item price</string>
+    <string name="posting_as">Posting as: </string
 </resources>
