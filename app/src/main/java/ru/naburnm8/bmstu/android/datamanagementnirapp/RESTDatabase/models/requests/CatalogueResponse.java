@@ -9,6 +9,7 @@ import java.util.List;
 
 public class CatalogueResponse implements Recordable {
     private List<Catalogue> data;
+    private boolean status;
     @Override
     public ArrayList<String> parseToRecord() {
         ArrayList<String> record = new ArrayList<>();
@@ -29,5 +30,17 @@ public class CatalogueResponse implements Recordable {
 
     public void setData(List<Catalogue> data) {
         this.data = data;
+    }
+
+    public boolean getStatus() {
+        return status;
+    }
+
+    public CatalogueResponse(boolean delete){
+        status = delete;
+    }
+    public CatalogueResponse(){
+        data = new ArrayList<>();
+        status = false;
     }
 }

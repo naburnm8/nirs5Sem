@@ -2,7 +2,10 @@ package ru.naburnm8.bmstu.android.datamanagementnirapp.tableViewActivity;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -10,9 +13,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.security.crypto.EncryptedSharedPreferences;
 import androidx.security.crypto.MasterKeys;
 import ru.naburnm8.bmstu.android.datamanagementnirapp.R;
+import ru.naburnm8.bmstu.android.datamanagementnirapp.RESTDatabase.databaseAPI.catalogue.CatalogueAPI_DELETE;
 import ru.naburnm8.bmstu.android.datamanagementnirapp.RESTDatabase.databaseAPI.catalogue.CatalogueAPI_GET;
+import ru.naburnm8.bmstu.android.datamanagementnirapp.RESTDatabase.databaseAPI.login.LoginAPI;
 import ru.naburnm8.bmstu.android.datamanagementnirapp.RESTDatabase.models.Catalogue;
 import ru.naburnm8.bmstu.android.datamanagementnirapp.RESTDatabase.models.Recordable;
+import ru.naburnm8.bmstu.android.datamanagementnirapp.RESTDatabase.models.authmodels.LoginRequest;
+import ru.naburnm8.bmstu.android.datamanagementnirapp.RESTDatabase.models.authmodels.LoginResponse;
 import ru.naburnm8.bmstu.android.datamanagementnirapp.RESTDatabase.models.requests.CatalogueResponse;
 import ru.naburnm8.bmstu.android.datamanagementnirapp.recyclerViewStuff.catalogueList.CatalogueAdapter;
 import ru.naburnm8.bmstu.android.datamanagementnirapp.recyclerViewStuff.catalogueList.OnDBandRecyclerListener;
@@ -24,9 +31,12 @@ import java.util.ArrayList;
 public class CatalogueViewActivity extends AppCompatActivity implements OnDBandRecyclerListener {
     RecyclerView recyclerView;
     Button addButton;
+    ImageView sync;
+    TextView message;
     ArrayList<Catalogue> catalogues;
     SharedPreferences sharedPreferences;
     SharedPreferences encryptedSharedPreferences;
+    SharedPreferences sharedSettings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +44,10 @@ public class CatalogueViewActivity extends AppCompatActivity implements OnDBandR
         setContentView(R.layout.view_activity);
         recyclerView = findViewById(R.id.recyclerViewActivity);
         addButton = findViewById(R.id.addAnEntryRecycler);
+        sync = findViewById(R.id.syncButton);
+        message = findViewById(R.id.tokenMessageText);
         sharedPreferences = getSharedPreferences("account", MODE_PRIVATE);
+        sharedSettings = getSharedPreferences("settings", MODE_PRIVATE);
         try{
             String masterKeys = MasterKeys.getOrCreate(MasterKeys.AES256_GCM_SPEC);
             encryptedSharedPreferences = EncryptedSharedPreferences.create("account", masterKeys,
@@ -46,7 +59,20 @@ public class CatalogueViewActivity extends AppCompatActivity implements OnDBandR
         String baseUrl = sharedPreferences.getString("serverSocket", "");
         String token = encryptedSharedPreferences.getString("token", "");
         CatalogueAPI_GET catalogueAPI_get = new CatalogueAPI_GET(this, baseUrl, token);
-
+        sync.setOnLongClickListener(view -> {
+            LoginAPI loginAPI = new LoginAPI(this, baseUrl);
+            String login = encryptedSharedPreferences.getString("username", "");
+            String password = encryptedSharedPreferences.getString("password", "");
+            LoginRequest loginRequest = new LoginRequest();
+            loginRequest.setPassword(password);
+            loginRequest.setUsername(login);
+            loginAPI.execute(loginRequest);
+            return true;
+        });
+        sync.setOnClickListener(view -> {
+            CatalogueAPI_GET catalogueAPI_get1 = new CatalogueAPI_GET(this, baseUrl, token);
+            catalogueAPI_get1.execute();
+        });
 
         CatalogueAdapter adapter = new CatalogueAdapter(new ArrayList<>(), this);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -59,16 +85,40 @@ public class CatalogueViewActivity extends AppCompatActivity implements OnDBandR
         if (logged == null) {
             return;
         }
+        System.out.println(logged);
         Toast.makeText(getApplicationContext(), logged, Toast.LENGTH_LONG).show();
     }
 
     @Override
     public void setData(Recordable data) {
         if (data == null){
+            message.setVisibility(View.VISIBLE);
             return;
+        }
+        if(data instanceof LoginResponse){
+            String token = ((LoginResponse)data).getToken();
+            encryptedSharedPreferences.edit().putString("token", token).commit();
+            String baseUrl = sharedPreferences.getString("serverSocket", "");
+            CatalogueAPI_GET catalogueAPI_get = new CatalogueAPI_GET(this, baseUrl, token);
+            catalogueAPI_get.execute();
+            return;
+        }
+        if(data instanceof CatalogueResponse){
+            boolean deletionSuccessful = ((CatalogueResponse) data).getStatus();
+            if (deletionSuccessful) {
+                String baseUrl = sharedPreferences.getString("serverSocket", "");
+                String token = encryptedSharedPreferences.getString("token", "");
+                CatalogueAPI_GET catalogueAPI_get = new CatalogueAPI_GET(this, baseUrl, token);
+                catalogueAPI_get.execute();
+                return;
+            }
         }
         CatalogueResponse catalogueResponse = (CatalogueResponse) data;
         catalogues = new ArrayList<>(catalogueResponse.getData());
+        if (catalogues.isEmpty()){
+            message.setVisibility(View.VISIBLE);
+        }
+        message.setVisibility(View.INVISIBLE);
         CatalogueAdapter adapter = new CatalogueAdapter(catalogues, this);
         recyclerView.setAdapter(adapter);
     }
@@ -80,6 +130,18 @@ public class CatalogueViewActivity extends AppCompatActivity implements OnDBandR
 
     @Override
     public void onDeleteClick(Catalogue item) {
+        String baseUrl = sharedSettings.getString("serverSocket", "");
+        String token = encryptedSharedPreferences.getString("token", "");
+        CatalogueAPI_DELETE api = new CatalogueAPI_DELETE(this, baseUrl, token, item);
+        api.execute();
+    }
 
+    @Override
+    public void onResume(){
+        super.onResume();
+        String baseUrl = sharedPreferences.getString("serverSocket", "");
+        String token = encryptedSharedPreferences.getString("token", "");
+        CatalogueAPI_GET catalogueAPI_get = new CatalogueAPI_GET(this, baseUrl, token);
+        catalogueAPI_get.execute();
     }
 }

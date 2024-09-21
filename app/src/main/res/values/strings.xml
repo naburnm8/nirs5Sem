@@ -34,4 +34,5 @@
     <string name="catalogue_name">Item name</string>
     <string name="catalogue_price">Item price</string>
     <string name="posting_as">Posting as: </string>
+    <string name="tokenMessage">It seems like your token has expired. Try to long click the refresh button</string>
 </resources>

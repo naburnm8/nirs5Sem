@@ -54,6 +54,7 @@ public class AccountSettingsActivity extends AppCompatActivity implements RESTDB
             sharedPreferencesEncrypted.edit().putString("username", "").apply();
             sharedPreferencesEncrypted.edit().putString("role", "").apply();
             sharedPreferencesEncrypted.edit().putString("token", "").apply();
+            sharedPreferencesEncrypted.edit().putString("password", "").apply();
             finish();
         });
 

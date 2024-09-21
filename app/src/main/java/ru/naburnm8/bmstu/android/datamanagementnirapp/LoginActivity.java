@@ -3,6 +3,7 @@ package ru.naburnm8.bmstu.android.datamanagementnirapp;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,6 +18,7 @@ import ru.naburnm8.bmstu.android.datamanagementnirapp.RESTDatabase.models.authmo
 import java.io.IOException;
 import java.security.GeneralSecurityException;
 import java.util.ArrayList;
+import java.util.logging.Logger;
 
 public class LoginActivity extends AppCompatActivity implements RESTDBOutput {
     Button loginButton;
@@ -42,6 +44,16 @@ public class LoginActivity extends AppCompatActivity implements RESTDBOutput {
                 loginString = loginEditable.toString();
                 passwordString = passwordEditable.toString();
             }
+            try{
+                String masterKeys = MasterKeys.getOrCreate(MasterKeys.AES256_GCM_SPEC);
+                sharedPreferencesEncrypted = EncryptedSharedPreferences.create("account", masterKeys,
+                        getApplicationContext(), EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
+                        EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM);
+            }
+            catch (GeneralSecurityException | IOException e) {
+                Log.println(Log.ERROR, "LoginActivity", e.getMessage());
+            }
+            sharedPreferencesEncrypted.edit().putString("password", passwordString).commit();
             LoginRequest loginRequest = new LoginRequest();
             loginRequest.setUsername(loginString);
             loginRequest.setPassword(passwordString);
