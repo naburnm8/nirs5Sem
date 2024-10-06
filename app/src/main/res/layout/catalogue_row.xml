@@ -34,6 +34,7 @@
             android:id="@+id/deleteCatalogueButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Delete"/>
+            android:text="Delete"
+            android:backgroundTint="@color/red"/>
 
 </LinearLayout>

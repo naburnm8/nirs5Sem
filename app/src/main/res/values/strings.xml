@@ -34,5 +34,10 @@
     <string name="catalogue_name">Item name</string>
     <string name="catalogue_price">Item price</string>
     <string name="posting_as">Posting as: </string>
-    <string name="tokenMessage">It seems like your token has expired. Try to long click the refresh button</string>
+    <string name="tokenMessage">It seems like your token has expired. Try long clicking the refresh button</string>
+    <string name="noDeletePermission">You have no permissions to delete</string>
+    <string name="noEditPermission">You have no permissions to edit</string>
+    <string name="noAddPermission">You have no permissions to add</string>
+    <string name="holdDownDelete">Hold down the button to confirm deletion</string>
+
 </resources>

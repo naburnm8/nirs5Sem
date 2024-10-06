@@ -1,10 +1,12 @@
 package ru.naburnm8.bmstu.android.datamanagementnirapp.recyclerViewStuff.catalogueList;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import org.jetbrains.annotations.NotNull;
@@ -12,6 +14,8 @@ import ru.naburnm8.bmstu.android.datamanagementnirapp.R;
 import ru.naburnm8.bmstu.android.datamanagementnirapp.RESTDatabase.models.Catalogue;
 
 import java.util.ArrayList;
+
+import static androidx.core.content.res.TypedArrayUtils.getText;
 
 
 public class CatalogueAdapter extends RecyclerView.Adapter<CatalogueAdapter.CatalogueViewHolder> {
@@ -65,9 +69,14 @@ public class CatalogueAdapter extends RecyclerView.Adapter<CatalogueAdapter.Cata
             editButton.setOnClickListener(view -> {
                 context.onEditClick(catalogue);
             });
-
             deleteButton.setOnClickListener(view -> {
+                if (context instanceof Context){
+                    Toast.makeText(((Context) context).getApplicationContext(), ((Context)context).getText(R.string.holdDownDelete), Toast.LENGTH_LONG).show();
+                }
+            });
+            deleteButton.setOnLongClickListener(view -> {
                 context.onDeleteClick(catalogue);
+                return true;
             });
         }
 

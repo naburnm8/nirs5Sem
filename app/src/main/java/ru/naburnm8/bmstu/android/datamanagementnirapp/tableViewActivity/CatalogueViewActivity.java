@@ -1,5 +1,6 @@
 package ru.naburnm8.bmstu.android.datamanagementnirapp.tableViewActivity;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -25,6 +26,7 @@ import ru.naburnm8.bmstu.android.datamanagementnirapp.recyclerViewStuff.catalogu
 import ru.naburnm8.bmstu.android.datamanagementnirapp.recyclerViewStuff.catalogueList.OnDBandRecyclerListener;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.security.GeneralSecurityException;
 import java.util.ArrayList;
 
@@ -73,7 +75,14 @@ public class CatalogueViewActivity extends AppCompatActivity implements OnDBandR
             CatalogueAPI_GET catalogueAPI_get1 = new CatalogueAPI_GET(this, baseUrl, token);
             catalogueAPI_get1.execute();
         });
-
+        addButton.setOnClickListener(view ->{
+            if(!checkPrivilege("add")){
+                Toast.makeText(getApplicationContext(), getText(R.string.noAddPermission), Toast.LENGTH_LONG).show();
+                return;
+            }
+            Intent intent = new Intent(this, CatalogueEditAddActivity.class);
+            startActivity(intent);
+        });
         CatalogueAdapter adapter = new CatalogueAdapter(new ArrayList<>(), this);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
@@ -125,11 +134,21 @@ public class CatalogueViewActivity extends AppCompatActivity implements OnDBandR
 
     @Override
     public void onEditClick(Catalogue item) {
-
+        if (!checkPrivilege("edit")) {
+            Toast.makeText(getApplicationContext(), getText(R.string.noEditPermission), Toast.LENGTH_LONG).show();
+            return;
+        }
+        Intent intent = new Intent(this, CatalogueEditAddActivity.class);
+        intent.putExtra("catalogue", item);
+        startActivity(intent);
     }
 
     @Override
     public void onDeleteClick(Catalogue item) {
+        if (!checkPrivilege("delete")) {
+            Toast.makeText(getApplicationContext(), getText(R.string.noDeletePermission), Toast.LENGTH_LONG).show();
+            return;
+        }
         String baseUrl = sharedSettings.getString("serverSocket", "");
         String token = encryptedSharedPreferences.getString("token", "");
         CatalogueAPI_DELETE api = new CatalogueAPI_DELETE(this, baseUrl, token, item);
@@ -143,5 +162,18 @@ public class CatalogueViewActivity extends AppCompatActivity implements OnDBandR
         String token = encryptedSharedPreferences.getString("token", "");
         CatalogueAPI_GET catalogueAPI_get = new CatalogueAPI_GET(this, baseUrl, token);
         catalogueAPI_get.execute();
+    }
+    private boolean checkPrivilege (String privilege){
+        String role = encryptedSharedPreferences.getString("role", "");
+        if(privilege.equals("delete")){
+            return role.contains("ADMINISTRATOR");
+        }
+        else if(privilege.equals("add")){
+            return role.contains("ADMINISTRATOR");
+        }
+        else if(privilege.equals("edit")){
+            return role.contains("ADMINISTRATOR");
+        }
+        return true;
     }
 }

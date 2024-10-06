@@ -1,8 +1,12 @@
 package ru.naburnm8.bmstu.android.datamanagementnirapp.RESTDatabase.models;
 
 import com.google.gson.annotations.SerializedName;
+import org.jetbrains.annotations.NotNull;
 
-public class Catalogue {
+import java.io.Serializable;
+
+public class Catalogue implements Serializable {
+
     @SerializedName("id")
     private int id;
 
@@ -35,6 +39,7 @@ public class Catalogue {
     public void setItemPrice(int itemPrice) {
         this.itemPrice = itemPrice;
     }
+    @NotNull
     @Override
     public String toString() {
         return "id=" + id + " itemName=" + itemName + " itemPrice=" + itemPrice;
