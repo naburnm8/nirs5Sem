@@ -23,7 +23,13 @@ public class CatalogueResponse implements Recordable {
 
     @Override
     public String parseToString() {
-        return data.toString();
+        if(data == null && dataSinglet != null){
+            return dataSinglet.toString();
+        }
+        if(data != null){
+            return data.toString();
+        }
+        return "";
     }
 
     public List<Catalogue> getData() {
