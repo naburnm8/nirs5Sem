@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
                                                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                   xmlns:tools="http://schemas.android.com/tools"
                                                    android:layout_width="match_parent"
                                                    android:layout_height="wrap_content"
                                                    android:padding="16dp">
@@ -9,11 +10,12 @@
             android:id="@+id/tvSupplyId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="ID"
-            android:textSize="14sp"
+            android:text="@string/awaitingArrival"
+            android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            android:visibility="visible"/>
 
     <TextView
             android:id="@+id/tvDateOfArrival"
@@ -22,7 +24,8 @@
             android:text="Date of Arrival"
             android:textSize="16sp"
             app:layout_constraintTop_toBottomOf="@+id/tvSupplyId"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="20dp"/>
 
     <TextView
             android:id="@+id/tvItemId"
@@ -30,8 +33,9 @@
             android:layout_height="wrap_content"
             android:text="Item ID"
             android:textSize="16sp"
-            app:layout_constraintTop_toBottomOf="@+id/tvDateOfArrival"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tvSupplyId"
+            android:layout_marginStart="8dp"/>
 
     <TextView
             android:id="@+id/tvQuantity"
@@ -39,8 +43,9 @@
             android:layout_height="wrap_content"
             android:text="Quantity"
             android:textSize="16sp"
-            app:layout_constraintTop_toBottomOf="@+id/tvItemId"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="80dp"/>
 
     <Button
             android:id="@+id/editSupplyButton"
@@ -49,8 +54,8 @@
             android:text="Edit"
             app:layout_constraintTop_toBottomOf="@+id/tvQuantity"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="16dp"
-            android:layout_marginStart="192dp"/>
+            android:layout_marginTop="12dp"
+            android:layout_marginStart="188dp"/>
 
     <Button
             android:id="@+id/deleteSupplyButton"
@@ -59,8 +64,8 @@
             android:text="Delete"
             app:layout_constraintTop_toBottomOf="@+id/tvQuantity"
             app:layout_constraintStart_toEndOf="@id/editSupplyButton"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="12dp"
             android:backgroundTint="@color/red"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

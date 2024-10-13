@@ -57,9 +57,8 @@ public class SupplyAdapter extends RecyclerView.Adapter<SupplyAdapter.SupplyView
         }
 
         public void bind(final Supply supply) {
-            supplyId.setText(String.valueOf(supply.getId()));
             dateOfArrival.setText(supply.getDateOfArrival());
-            itemId.setText(String.valueOf(supply.getItem().getId()));
+            itemId.setText(supply.getItem().getItemName());
             quantity.setText(String.valueOf(supply.getQuantity()));
 
             editButton.setOnClickListener(view -> {

@@ -12,6 +12,7 @@ import ru.naburnm8.bmstu.android.datamanagementnirapp.R;
 import ru.naburnm8.bmstu.android.datamanagementnirapp.tableViewActivity.catalogue.CatalogueViewActivity;
 import ru.naburnm8.bmstu.android.datamanagementnirapp.tableViewActivity.clients.ClientsViewActivity;
 import ru.naburnm8.bmstu.android.datamanagementnirapp.tableViewActivity.storage.StorageViewActivity;
+import ru.naburnm8.bmstu.android.datamanagementnirapp.tableViewActivity.supply.SupplyViewActivity;
 
 import java.util.ArrayList;
 
@@ -72,6 +73,8 @@ public class ActionAdapter extends RecyclerView.Adapter<ActionViewHolder>{
                 break;
             case "supply":
                 //Toast.makeText(context, actions.get(index).getAffected(), Toast.LENGTH_SHORT).show();
+                Intent intent3 = new Intent(context, SupplyViewActivity.class);
+                context.startActivity(intent3);
                 break;
         }
 

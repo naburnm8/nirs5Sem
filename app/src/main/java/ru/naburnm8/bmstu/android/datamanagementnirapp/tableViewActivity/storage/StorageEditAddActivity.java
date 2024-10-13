@@ -70,6 +70,7 @@ public class StorageEditAddActivity extends AppCompatActivity implements RESTDBO
             finish();
         }
         catalogueName.setText(object.getItem().getItemName());
+        quantity.setText(String.valueOf(object.getQuantity()));
         choose.setEnabled(false);
         choose.setVisibility(View.INVISIBLE);
         add.setOnClickListener(view -> {

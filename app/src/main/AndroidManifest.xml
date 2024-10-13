@@ -36,6 +36,8 @@
         <activity android:name=".tableViewActivity.storage.StorageEditAddActivity"/>
         <activity android:name=".choiceActivity.catalogueChoiceActivity"/>
         <activity android:name=".choiceActivity.clientChoiceActivity"/>
+        <activity android:name=".tableViewActivity.supply.SupplyViewActivity"/>
+        <activity android:name=".tableViewActivity.supply.SupplyEditAddActivity"/>
     </application>
 
 </manifest>
