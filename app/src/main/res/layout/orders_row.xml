@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
                                                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                   xmlns:tools="http://schemas.android.com/tools"
                                                    android:layout_width="match_parent"
                                                    android:layout_height="wrap_content"
                                                    android:padding="16dp">
 
     <!-- Order ID -->
+
+    <!-- Item Name -->
+
     <TextView
             android:id="@+id/tvOrderId"
             android:layout_width="wrap_content"
@@ -14,9 +18,13 @@
             android:textSize="14sp"
             android:textStyle="bold"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="64dp"/>
 
-    <!-- Item Name -->
+    <!-- Quantity -->
+
+    <!-- Date of Transaction -->
+
     <TextView
             android:id="@+id/tvNameItem"
             android:layout_width="wrap_content"
@@ -24,9 +32,11 @@
             android:text="Item Name"
             android:textSize="16sp"
             app:layout_constraintTop_toBottomOf="@+id/tvOrderId"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="8dp"/>
 
-    <!-- Quantity -->
+    <!-- Client ID -->
+
     <TextView
             android:id="@+id/tvQuantityItem"
             android:layout_width="wrap_content"
@@ -34,9 +44,9 @@
             android:text="Quantity"
             android:textSize="16sp"
             app:layout_constraintTop_toBottomOf="@+id/tvNameItem"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="76dp"/>
 
-    <!-- Date of Transaction -->
     <TextView
             android:id="@+id/tvDateOfTransaction"
             android:layout_width="wrap_content"
@@ -44,9 +54,12 @@
             android:text="Date of Transaction"
             android:textSize="16sp"
             app:layout_constraintTop_toBottomOf="@+id/tvQuantityItem"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="8dp"/>
 
-    <!-- Client ID -->
+    <!-- Edit Button -->
+
+    <!-- Delete Button -->
     <TextView
             android:id="@+id/tvClientId"
             android:layout_width="wrap_content"
@@ -54,11 +67,9 @@
             android:text="Client ID"
             android:textSize="16sp"
             app:layout_constraintTop_toBottomOf="@+id/tvDateOfTransaction"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="8dp"/>
 
-    <!-- Edit Button -->
-
-    <!-- Delete Button -->
     <Button
             android:id="@+id/editOrderButton"
             android:layout_width="wrap_content"
@@ -79,5 +90,26 @@
             android:layout_marginStart="12dp"
             android:layout_marginTop="24dp"
             android:backgroundTint="@color/red"/>
+
+    <TextView
+            android:text="@string/orderID"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView6"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/tvOrderId"
+            app:layout_constraintHorizontal_bias="0.888"/>
+
+    <TextView
+            android:text="@string/quantity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView9"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvNameItem"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toStartOf="@+id/tvQuantityItem"
+            app:layout_constraintHorizontal_bias="0.615"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

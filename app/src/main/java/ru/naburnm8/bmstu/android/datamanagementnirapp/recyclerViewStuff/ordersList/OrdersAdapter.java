@@ -62,7 +62,9 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.OrdersView
             nameItem.setText(order.getItem().getItemName());
             quantityItem.setText(String.valueOf(order.getqItem()));
             dateOfTransaction.setText(order.getDateOfTransaction());
-            clientId.setText(String.valueOf(order.getClient().getId()));
+            String name = order.getClient().getFirstName() + " " + order.getClient().getLastName();
+            clientId.setText(name);
+
 
             editButton.setOnClickListener(view -> {
                 context.onEditClick(order);

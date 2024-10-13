@@ -31,8 +31,8 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="addAnEntry">Add an entry</string>
-    <string name="catalogue_name">Item name</string>
-    <string name="catalogue_price">Item price</string>
+    <string name="catalogue_name">Item name:</string>
+    <string name="catalogue_price">Item price:</string>
     <string name="posting_as">Posting as: </string>
     <string name="tokenMessage">It seems like your token has expired. Try long clicking the refresh button</string>
     <string name="noDeletePermission">You have no permissions to delete</string>
@@ -49,5 +49,7 @@
     <string name="chooseAnItem">Choose an item</string>
     <string name="wrongDate">Please use (yyyy-dd-mm)</string>
     <string name="chooseThis">Choose</string>
+    <string name="orderID">Order ID: </string>
+    <string name="quantity">Quantity: </string>
 
 </resources>
