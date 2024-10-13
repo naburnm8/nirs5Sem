@@ -32,6 +32,10 @@
         <activity android:name=".tableViewActivity.catalogue.CatalogueEditAddActivity"/>
         <activity android:name=".tableViewActivity.clients.ClientsViewActivity"/>
         <activity android:name=".tableViewActivity.clients.ClientsEditAddActivity"/>
+        <activity android:name=".tableViewActivity.storage.StorageViewActivity"/>
+        <activity android:name=".tableViewActivity.storage.StorageEditAddActivity"/>
+        <activity android:name=".choiceActivity.catalogueChoiceActivity"/>
+        <activity android:name=".choiceActivity.clientChoiceActivity"/>
     </application>
 
 </manifest>

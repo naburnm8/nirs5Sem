@@ -28,7 +28,7 @@ public class StorageAPI_PUT extends AsyncTask<Void, Void, StorageResponse> {
     @Override
     protected StorageResponse doInBackground(Void... voids) {
         try{
-            Call<Storage> call = apiService.updateStorage("Bearer " + token, object.getIdItem(), object);
+            Call<Storage> call = apiService.updateStorage("Bearer " + token, object.getId(), object);
             Response<Storage> response = call.execute();
             if(response.isSuccessful()){
                 if(response.body() != null){

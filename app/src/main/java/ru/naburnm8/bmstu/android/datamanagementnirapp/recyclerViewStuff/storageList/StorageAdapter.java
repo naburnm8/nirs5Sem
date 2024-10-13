@@ -52,18 +52,18 @@ public class StorageAdapter extends RecyclerView.Adapter<StorageAdapter.StorageV
             itemId = itemView.findViewById(R.id.tvItemId);
             storageQuantity = itemView.findViewById(R.id.tvStorageQuantity);
             editButton = itemView.findViewById(R.id.editStorageButton);
-            deleteButton = itemView.findViewById(R.id.deleteStorageButton);
+            //deleteButton = itemView.findViewById(R.id.deleteStorageButton);
         }
 
         public void bind(final Storage storage) {
-            storageId.setText(String.valueOf(storage.getIdItem()));
-            itemId.setText(String.valueOf(storage.getItem().getId()));
+            storageId.setText(String.valueOf(storage.getId()));
+            itemId.setText(storage.getItem().getItemName());
             storageQuantity.setText(String.valueOf(storage.getQuantity()));
 
             editButton.setOnClickListener(view -> {
                 context.onEditClick(storage);
             });
-
+            /*
             deleteButton.setOnClickListener(view -> {
                 Toast.makeText(itemView.getContext(), R.string.holdDownDelete, Toast.LENGTH_LONG).show();
             });
@@ -72,6 +72,7 @@ public class StorageAdapter extends RecyclerView.Adapter<StorageAdapter.StorageV
                 context.onDeleteClick(storage);
                 return true;
             });
+             */
         }
     }
 }

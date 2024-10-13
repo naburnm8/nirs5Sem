@@ -42,5 +42,7 @@
     <string name="clientName">Client\'s name ([name] [lastName] [patronymic]) </string>
     <string name="clientPhone">Client\'s phone number</string>
     <string name="wrongName">Please enter a valid name</string>
+    <string name="choose">Choose…</string>
+    <string name="quantityInStorage">Specify quantity</string>
 
 </resources>

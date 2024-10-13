@@ -11,6 +11,7 @@ import org.jetbrains.annotations.NotNull;
 import ru.naburnm8.bmstu.android.datamanagementnirapp.R;
 import ru.naburnm8.bmstu.android.datamanagementnirapp.tableViewActivity.catalogue.CatalogueViewActivity;
 import ru.naburnm8.bmstu.android.datamanagementnirapp.tableViewActivity.clients.ClientsViewActivity;
+import ru.naburnm8.bmstu.android.datamanagementnirapp.tableViewActivity.storage.StorageViewActivity;
 
 import java.util.ArrayList;
 
@@ -66,6 +67,8 @@ public class ActionAdapter extends RecyclerView.Adapter<ActionViewHolder>{
                 break;
             case "storage":
                 //Toast.makeText(context, actions.get(index).getAffected(), Toast.LENGTH_SHORT).show();
+                Intent intent2 = new Intent(context, StorageViewActivity.class);
+                context.startActivity(intent2);
                 break;
             case "supply":
                 //Toast.makeText(context, actions.get(index).getAffected(), Toast.LENGTH_SHORT).show();

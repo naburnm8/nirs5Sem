@@ -2,9 +2,11 @@ package ru.naburnm8.bmstu.android.datamanagementnirapp.RESTDatabase.models;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Storage {
-    @SerializedName("idItem")
-    private int idItem;
+import java.io.Serializable;
+
+public class Storage implements Serializable {
+    @SerializedName("id")
+    private int id;
 
     @SerializedName("item")
     private Catalogue item;
@@ -12,12 +14,12 @@ public class Storage {
     @SerializedName("quantity")
     private int quantity;
 
-    public int getIdItem() {
-        return idItem;
+    public int getId() {
+        return id;
     }
 
-    public void setIdItem(int idItem) {
-        this.idItem = idItem;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public Catalogue getItem() {

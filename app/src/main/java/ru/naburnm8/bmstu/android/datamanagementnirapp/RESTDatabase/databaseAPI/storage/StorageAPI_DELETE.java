@@ -28,7 +28,7 @@ public class StorageAPI_DELETE extends AsyncTask<Void, Void, StorageResponse> {
     @Override
     protected StorageResponse doInBackground(Void... voids) {
         try{
-            int id_item = item.getIdItem();
+            int id_item = item.getId();
             Call<Void> call = apiService.deleteStorage("Bearer " + token, id_item);
             Response<Void> response = call.execute();
             if (response.isSuccessful()) {
