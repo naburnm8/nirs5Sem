@@ -1,4 +1,4 @@
-package ru.naburnm8.bmstu.android.datamanagementnirapp.tableViewActivity;
+package ru.naburnm8.bmstu.android.datamanagementnirapp.tableViewActivity.catalogue;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;

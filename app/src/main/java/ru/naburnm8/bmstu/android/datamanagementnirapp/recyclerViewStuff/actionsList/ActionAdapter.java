@@ -9,7 +9,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import org.jetbrains.annotations.NotNull;
 import ru.naburnm8.bmstu.android.datamanagementnirapp.R;
-import ru.naburnm8.bmstu.android.datamanagementnirapp.tableViewActivity.CatalogueViewActivity;
+import ru.naburnm8.bmstu.android.datamanagementnirapp.tableViewActivity.catalogue.CatalogueViewActivity;
+import ru.naburnm8.bmstu.android.datamanagementnirapp.tableViewActivity.clients.ClientsViewActivity;
 
 import java.util.ArrayList;
 
@@ -57,6 +58,8 @@ public class ActionAdapter extends RecyclerView.Adapter<ActionViewHolder>{
                 break;
             case "clients":
                 //Toast.makeText(context, actions.get(index).getAffected(), Toast.LENGTH_SHORT).show();
+                Intent intent1 = new Intent(context, ClientsViewActivity.class);
+                context.startActivity(intent1);
                 break;
             case "orders":
                 //Toast.makeText(context, actions.get(index).getAffected(), Toast.LENGTH_SHORT).show();
@@ -65,9 +68,6 @@ public class ActionAdapter extends RecyclerView.Adapter<ActionViewHolder>{
                 //Toast.makeText(context, actions.get(index).getAffected(), Toast.LENGTH_SHORT).show();
                 break;
             case "supply":
-                //Toast.makeText(context, actions.get(index).getAffected(), Toast.LENGTH_SHORT).show();
-                break;
-            case "users":
                 //Toast.makeText(context, actions.get(index).getAffected(), Toast.LENGTH_SHORT).show();
                 break;
         }

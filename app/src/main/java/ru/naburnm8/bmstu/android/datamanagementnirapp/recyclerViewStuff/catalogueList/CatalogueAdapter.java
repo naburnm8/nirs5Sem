@@ -15,7 +15,6 @@ import ru.naburnm8.bmstu.android.datamanagementnirapp.RESTDatabase.models.Catalo
 
 import java.util.ArrayList;
 
-import static androidx.core.content.res.TypedArrayUtils.getText;
 
 
 public class CatalogueAdapter extends RecyclerView.Adapter<CatalogueAdapter.CatalogueViewHolder> {

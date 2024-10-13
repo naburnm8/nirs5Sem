@@ -28,8 +28,10 @@
         <activity android:name=".MainMenuActivity"/>
         <activity android:name=".AccountSettingsActivity"/>
         <activity android:name=".LoginActivity"/>
-        <activity android:name=".tableViewActivity.CatalogueViewActivity"/>
-        <activity android:name=".tableViewActivity.CatalogueEditAddActivity"/>
+        <activity android:name=".tableViewActivity.catalogue.CatalogueViewActivity"/>
+        <activity android:name=".tableViewActivity.catalogue.CatalogueEditAddActivity"/>
+        <activity android:name=".tableViewActivity.clients.ClientsViewActivity"/>
+        <activity android:name=".tableViewActivity.clients.ClientsEditAddActivity"/>
     </application>
 
 </manifest>

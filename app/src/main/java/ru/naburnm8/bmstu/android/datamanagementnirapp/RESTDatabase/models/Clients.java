@@ -2,7 +2,9 @@ package ru.naburnm8.bmstu.android.datamanagementnirapp.RESTDatabase.models;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Clients {
+import java.io.Serializable;
+
+public class Clients implements Serializable {
     @SerializedName("id")
     private int id;
 

@@ -39,5 +39,8 @@
     <string name="noEditPermission">You have no permissions to edit</string>
     <string name="noAddPermission">You have no permissions to add</string>
     <string name="holdDownDelete">Hold down the button to confirm deletion</string>
+    <string name="clientName">Client\'s name ([name] [lastName] [patronymic]) </string>
+    <string name="clientPhone">Client\'s phone number</string>
+    <string name="wrongName">Please enter a valid name</string>
 
 </resources>
