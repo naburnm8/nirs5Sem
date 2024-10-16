@@ -45,7 +45,7 @@
     <string name="choose">Choose…</string>
     <string name="quantityInStorage">Specify quantity</string>
     <string name="awaitingArrival">Arrival of: </string>
-    <string name="enterADate">Enter the supply date: </string>
+    <string name="enterADate">Enter the date: </string>
     <string name="chooseAnItem">Choose an item</string>
     <string name="wrongDate">Please use (yyyy-dd-mm)</string>
     <string name="chooseThis">Choose</string>

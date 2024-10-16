@@ -1,6 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                   xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                   xmlns:tools="http://schemas.android.com/tools"
                                                    android:layout_width="match_parent"
                                                    android:layout_height="match_parent">
 
+    <TextView
+            android:text="@string/posting_as"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView11"
+            android:textSize="24sp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="16dp"/>
+
+    <TextView
+            android:text="TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/usernameText"
+            android:textSize="24sp"
+            app:layout_constraintStart_toEndOf="@+id/textView11"
+            app:layout_constraintBottom_toBottomOf="@+id/textView11"
+            android:layout_marginStart="20dp"/>
+
+    <TextView
+            android:text="@string/role"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView13"
+            android:textSize="24sp"
+            app:layout_constraintTop_toBottomOf="@+id/textView11"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="12dp"
+            android:layout_marginStart="16dp"/>
+
+    <TextView
+            android:text="TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/roleText"
+            android:textSize="24sp"
+            app:layout_constraintStart_toEndOf="@+id/textView13"
+            android:layout_marginStart="20dp"
+            app:layout_constraintBottom_toBottomOf="@+id/textView13"/>
+
+    <TextView
+            android:text="TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/clientId"
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/textView13"
+            android:layout_marginTop="16dp"/>
+
+    <Button
+            android:text="@string/choose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/chooseClientButton"
+            app:layout_constraintStart_toEndOf="@+id/clientId"
+            android:layout_marginStart="12dp"
+            app:layout_constraintTop_toBottomOf="@+id/roleText"
+            android:layout_marginTop="8dp"/>
+
+    <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="date"
+            android:ems="10"
+            android:id="@+id/editOrderDate"
+            app:layout_constraintTop_toBottomOf="@+id/clientId"
+            android:layout_marginTop="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="16dp"
+            android:hint="@string/enterADate"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="401dp"
+            android:layout_height="339dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editOrderDate"
+            android:layout_marginTop="20dp"
+            app:layout_constraintHorizontal_bias="0.4"
+            android:id="@+id/ordersTupleRecycler"/>
+
+    <Button
+            android:layout_width="51dp"
+            android:layout_height="50dp"
+            android:id="@+id/addAPairButton"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="352dp"
+            android:background="@android:drawable/stat_notify_more"
+            app:layout_constraintTop_toBottomOf="@+id/ordersTupleRecycler"
+            android:layout_marginTop="12dp"/>
+
+    <Button
+            android:text="@string/submit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/submitButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            android:layout_marginBottom="24dp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

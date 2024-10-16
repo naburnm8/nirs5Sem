@@ -146,6 +146,19 @@ public class OrdersViewActivity extends AppCompatActivity implements OnDBandRecy
 
     @Override
     public void onEditClick(Orders item) {
+        //pass
+    }
+
+    @Override
+    public void onDeleteClick(Orders item) {
+        String baseUrl = sharedSettings.getString("serverSocket", "");
+        String token = encryptedSharedPreferences.getString("token", "");
+        OrdersAPI_DELETE api = new OrdersAPI_DELETE(this, baseUrl, token, item);
+        api.execute();
+    }
+
+    @Override
+    public void onEditClick(OrderUnited item) {
         if (!checkPrivilege("edit")) {
             Toast.makeText(getApplicationContext(), getText(R.string.noEditPermission), Toast.LENGTH_LONG).show();
             return;
@@ -156,25 +169,14 @@ public class OrdersViewActivity extends AppCompatActivity implements OnDBandRecy
     }
 
     @Override
-    public void onDeleteClick(Orders item) {
+    public void onDeleteClick(OrderUnited item) {
         if (!checkPrivilege("delete")) {
             Toast.makeText(getApplicationContext(), getText(R.string.noDeletePermission), Toast.LENGTH_LONG).show();
             return;
         }
-        String baseUrl = sharedSettings.getString("serverSocket", "");
-        String token = encryptedSharedPreferences.getString("token", "");
-        OrdersAPI_DELETE api = new OrdersAPI_DELETE(this, baseUrl, token, item);
-        api.execute();
-    }
-
-    @Override
-    public void onEditClick(OrderUnited item) {
-
-    }
-
-    @Override
-    public void onDeleteClick(OrderUnited item) {
-
+        for (Orders order: item.getOrders()){
+            onDeleteClick(order);
+        }
     }
 
     @Override
