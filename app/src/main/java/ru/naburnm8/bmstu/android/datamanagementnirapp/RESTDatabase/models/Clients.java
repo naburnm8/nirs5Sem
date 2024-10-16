@@ -1,6 +1,7 @@
 package ru.naburnm8.bmstu.android.datamanagementnirapp.RESTDatabase.models;
 
 import com.google.gson.annotations.SerializedName;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.Serializable;
 
@@ -59,5 +60,27 @@ public class Clients implements Serializable {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    @NotNull
+    @Override
+    public String toString() {
+        return "Clients [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(obj instanceof Clients) {
+            Clients clients = (Clients)obj;
+            return this.toString().equals(clients.toString());
+        }
+        else {
+            return false;
+        }
+    }
+
+    @Override
+    public int hashCode() {
+        return toString().hashCode();
     }
 }
