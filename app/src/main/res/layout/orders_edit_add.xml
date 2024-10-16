@@ -48,7 +48,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/textView13"/>
 
     <TextView
-            android:text="TextView"
+            android:text="@string/chooseAClient"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/clientId"
@@ -69,20 +69,20 @@
             android:layout_marginTop="8dp"/>
 
     <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="374dp"
+            android:layout_height="43dp"
             android:inputType="date"
             android:ems="10"
             android:id="@+id/editOrderDate"
             app:layout_constraintTop_toBottomOf="@+id/clientId"
             android:layout_marginTop="20dp"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="16dp"
-            android:hint="@string/enterADate"/>
+            android:hint="@string/enterADate"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
     <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="401dp"
-            android:layout_height="339dp"
+            android:layout_width="396dp"
+            android:layout_height="191dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/editOrderDate"
@@ -110,4 +110,62 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             android:layout_marginBottom="24dp"/>
+
+    <TextView
+            android:text="@string/chooseAnItem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/itemNameText"
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ordersTupleRecycler"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="16dp"/>
+
+    <Button
+            android:text="@string/choose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/chooseAnItemButton"
+            app:layout_constraintTop_toBottomOf="@+id/ordersTupleRecycler"
+            android:layout_marginTop="12dp"
+            app:layout_constraintStart_toEndOf="@+id/itemNameText"
+            android:layout_marginStart="12dp"/>
+
+    <SeekBar
+            style="@style/Widget.AppCompat.SeekBar.Discrete"
+            android:layout_width="380dp"
+            android:layout_height="22dp"
+            android:max="50"
+            android:progress="1"
+            android:id="@+id/seekBarQuantity"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.516"
+            app:layout_constraintTop_toBottomOf="@+id/quantityChosen"
+            android:layout_marginTop="20dp"/>
+
+    <TextView
+            android:text="TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/quantityChosen"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/chooseAnItemButton"
+            android:layout_marginTop="20dp"
+            app:layout_constraintHorizontal_bias="0.498"/>
+
+    <Button
+            android:text="@string/longPressQuantityNotice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/button"
+            android:textSize="8sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/seekBarQuantity"
+            android:layout_marginTop="8dp"
+            app:layout_constraintHorizontal_bias="0.498"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

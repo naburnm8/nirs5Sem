@@ -51,5 +51,8 @@
     <string name="chooseThis">Choose</string>
     <string name="orderID">Order ID: </string>
     <string name="quantity">Quantity: </string>
+    <string name="chooseAClient">Choose a client</string>
+    <string name="longPressQuantityNotice">Enter number manually</string>
+    <string name="pleaseChooseACatalogue">Please choose an item</string>
 
 </resources>

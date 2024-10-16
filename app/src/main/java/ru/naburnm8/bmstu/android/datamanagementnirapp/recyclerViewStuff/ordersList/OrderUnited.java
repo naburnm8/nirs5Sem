@@ -5,6 +5,8 @@ import ru.naburnm8.bmstu.android.datamanagementnirapp.RESTDatabase.models.Client
 import ru.naburnm8.bmstu.android.datamanagementnirapp.RESTDatabase.models.Orders;
 
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class OrderUnited implements Serializable {
@@ -21,6 +23,11 @@ public class OrderUnited implements Serializable {
             }
         }
 
+    }
+    public OrderUnited() {
+        this.dateOfTransaction = getTodayDate();
+        this.client = null;
+        this.orders = new ArrayList<>();
     }
     public String getDateOfTransaction() {
         return dateOfTransaction;
@@ -50,5 +57,13 @@ public class OrderUnited implements Serializable {
     @Override
     public String toString() {
         return "Client: " + client.getLastName() + " date: " + dateOfTransaction + " listLen: " + orders.size();
+    }
+    public static String getTodayDate() {
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            LocalDate today = LocalDate.now();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            return formatter.format(today);
+        }
+        return "";
     }
 }

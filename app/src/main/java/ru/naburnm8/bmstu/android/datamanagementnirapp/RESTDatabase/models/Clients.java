@@ -83,4 +83,11 @@ public class Clients implements Serializable {
     public int hashCode() {
         return toString().hashCode();
     }
+
+    public static Clients getNeutralClient(){
+        Clients clients = new Clients();
+        clients.setFirstName("No client chosen");
+        clients.setLastName(" ");
+        return clients;
+    }
 }

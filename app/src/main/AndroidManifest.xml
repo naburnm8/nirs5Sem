@@ -34,8 +34,8 @@
         <activity android:name=".tableViewActivity.clients.ClientsEditAddActivity"/>
         <activity android:name=".tableViewActivity.storage.StorageViewActivity"/>
         <activity android:name=".tableViewActivity.storage.StorageEditAddActivity"/>
-        <activity android:name=".choiceActivity.catalogueChoiceActivity"/>
-        <activity android:name=".choiceActivity.clientChoiceActivity"/>
+        <activity android:name=".choiceActivity.CatalogueChoiceActivity"/>
+        <activity android:name=".choiceActivity.ClientChoiceActivity"/>
         <activity android:name=".tableViewActivity.supply.SupplyViewActivity"/>
         <activity android:name=".tableViewActivity.supply.SupplyEditAddActivity"/>
         <activity android:name=".tableViewActivity.orders.OrdersViewActivity"/>

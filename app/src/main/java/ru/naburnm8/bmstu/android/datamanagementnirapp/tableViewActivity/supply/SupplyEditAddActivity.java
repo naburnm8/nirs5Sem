@@ -3,7 +3,6 @@ package ru.naburnm8.bmstu.android.datamanagementnirapp.tableViewActivity.supply;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -13,15 +12,12 @@ import androidx.security.crypto.EncryptedSharedPreferences;
 import androidx.security.crypto.MasterKeys;
 import ru.naburnm8.bmstu.android.datamanagementnirapp.R;
 import ru.naburnm8.bmstu.android.datamanagementnirapp.RESTDatabase.RESTDBOutput;
-import ru.naburnm8.bmstu.android.datamanagementnirapp.RESTDatabase.databaseAPI.storage.StorageAPI_PUT;
-import ru.naburnm8.bmstu.android.datamanagementnirapp.RESTDatabase.databaseAPI.supply.SupplyAPI_GET;
 import ru.naburnm8.bmstu.android.datamanagementnirapp.RESTDatabase.databaseAPI.supply.SupplyAPI_POST;
 import ru.naburnm8.bmstu.android.datamanagementnirapp.RESTDatabase.databaseAPI.supply.SupplyAPI_PUT;
 import ru.naburnm8.bmstu.android.datamanagementnirapp.RESTDatabase.models.Catalogue;
 import ru.naburnm8.bmstu.android.datamanagementnirapp.RESTDatabase.models.Recordable;
-import ru.naburnm8.bmstu.android.datamanagementnirapp.RESTDatabase.models.Storage;
 import ru.naburnm8.bmstu.android.datamanagementnirapp.RESTDatabase.models.Supply;
-import ru.naburnm8.bmstu.android.datamanagementnirapp.choiceActivity.catalogueChoiceActivity;
+import ru.naburnm8.bmstu.android.datamanagementnirapp.choiceActivity.CatalogueChoiceActivity;
 
 import java.io.IOException;
 import java.security.GeneralSecurityException;
@@ -122,7 +118,7 @@ public class SupplyEditAddActivity extends AppCompatActivity implements RESTDBOu
             }
         });
         choose.setOnClickListener(view -> {
-            Intent intent = new Intent(this, catalogueChoiceActivity.class);
+            Intent intent = new Intent(this, CatalogueChoiceActivity.class);
             startActivityForResult(intent, 1);
         });
 
@@ -159,7 +155,7 @@ public class SupplyEditAddActivity extends AppCompatActivity implements RESTDBOu
             }
         }
     }
-    private boolean isDateValid(String date) {
+    public static boolean isDateValid(String date) {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
         formatter.setLenient(false);
         try {

@@ -14,8 +14,8 @@ import java.util.List;
 
 public class OrdersEditAddAdapter extends RecyclerView.Adapter<OrdersEditAddAdapter.OrdersEditAddViewHolder> {
 
-    private List<Orders> ordersList;
-    private OnItemClickListener onItemClickListener;
+    private final List<Orders> ordersList;
+    private final OnItemClickListener onItemClickListener;
 
     public OrdersEditAddAdapter(List<Orders> ordersList, OnItemClickListener onItemClickListener) {
         this.ordersList = ordersList;
@@ -46,11 +46,7 @@ public class OrdersEditAddAdapter extends RecyclerView.Adapter<OrdersEditAddAdap
         return ordersList.size();
     }
 
-    public interface OnItemClickListener {
-        void onItemClick(Orders order);
-    }
-
-    static class OrdersEditAddViewHolder extends RecyclerView.ViewHolder {
+    public static class OrdersEditAddViewHolder extends RecyclerView.ViewHolder {
         TextView itemName;
         TextView qItem;
 

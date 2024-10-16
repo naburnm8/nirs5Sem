@@ -3,7 +3,6 @@ package ru.naburnm8.bmstu.android.datamanagementnirapp.choiceActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -15,16 +14,14 @@ import ru.naburnm8.bmstu.android.datamanagementnirapp.RESTDatabase.databaseAPI.c
 import ru.naburnm8.bmstu.android.datamanagementnirapp.RESTDatabase.models.Catalogue;
 import ru.naburnm8.bmstu.android.datamanagementnirapp.RESTDatabase.models.Recordable;
 import ru.naburnm8.bmstu.android.datamanagementnirapp.RESTDatabase.models.requests.CatalogueResponse;
-import ru.naburnm8.bmstu.android.datamanagementnirapp.recyclerViewStuff.catalogueList.CatalogueAdapter;
 import ru.naburnm8.bmstu.android.datamanagementnirapp.recyclerViewStuff.catalogueList.CatalogueChoiceAdapter;
 import ru.naburnm8.bmstu.android.datamanagementnirapp.recyclerViewStuff.catalogueList.OnDBandRecyclerListener;
 
 import java.io.IOException;
 import java.security.GeneralSecurityException;
 import java.util.ArrayList;
-import java.util.logging.Logger;
 
-public class catalogueChoiceActivity extends AppCompatActivity implements OnDBandRecyclerListener {
+public class CatalogueChoiceActivity extends AppCompatActivity implements OnDBandRecyclerListener {
     RecyclerView recyclerView;
     ArrayList<Catalogue> catalogueList;
     SharedPreferences sharedPreferences;

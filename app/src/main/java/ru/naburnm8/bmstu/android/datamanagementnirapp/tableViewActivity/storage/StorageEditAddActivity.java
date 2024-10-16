@@ -1,6 +1,5 @@
 package ru.naburnm8.bmstu.android.datamanagementnirapp.tableViewActivity.storage;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -8,21 +7,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-import androidx.activity.result.ActivityResultLauncher;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.security.crypto.EncryptedSharedPreferences;
 import androidx.security.crypto.MasterKeys;
-import com.google.android.material.textfield.TextInputLayout;
 import ru.naburnm8.bmstu.android.datamanagementnirapp.R;
 import ru.naburnm8.bmstu.android.datamanagementnirapp.RESTDatabase.RESTDBOutput;
-import ru.naburnm8.bmstu.android.datamanagementnirapp.RESTDatabase.databaseAPI.clients.ClientsAPI_POST;
-import ru.naburnm8.bmstu.android.datamanagementnirapp.RESTDatabase.databaseAPI.clients.ClientsAPI_PUT;
 import ru.naburnm8.bmstu.android.datamanagementnirapp.RESTDatabase.databaseAPI.storage.StorageAPI_PUT;
-import ru.naburnm8.bmstu.android.datamanagementnirapp.RESTDatabase.models.Catalogue;
-import ru.naburnm8.bmstu.android.datamanagementnirapp.RESTDatabase.models.Clients;
 import ru.naburnm8.bmstu.android.datamanagementnirapp.RESTDatabase.models.Recordable;
 import ru.naburnm8.bmstu.android.datamanagementnirapp.RESTDatabase.models.Storage;
-import ru.naburnm8.bmstu.android.datamanagementnirapp.choiceActivity.catalogueChoiceActivity;
 
 import java.io.IOException;
 import java.security.GeneralSecurityException;
