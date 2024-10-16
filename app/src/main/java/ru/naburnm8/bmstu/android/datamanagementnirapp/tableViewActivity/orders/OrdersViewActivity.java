@@ -25,6 +25,7 @@ import ru.naburnm8.bmstu.android.datamanagementnirapp.RESTDatabase.models.authmo
 import ru.naburnm8.bmstu.android.datamanagementnirapp.RESTDatabase.models.authmodels.LoginResponse;
 import ru.naburnm8.bmstu.android.datamanagementnirapp.RESTDatabase.models.requests.OrdersResponse;
 
+import ru.naburnm8.bmstu.android.datamanagementnirapp.recyclerViewStuff.ordersList.OrderUnited;
 import ru.naburnm8.bmstu.android.datamanagementnirapp.recyclerViewStuff.ordersList.OrdersAdapter;
 import ru.naburnm8.bmstu.android.datamanagementnirapp.recyclerViewStuff.ordersList.OnDBandRecyclerListener;
 
@@ -164,6 +165,16 @@ public class OrdersViewActivity extends AppCompatActivity implements OnDBandRecy
         String token = encryptedSharedPreferences.getString("token", "");
         OrdersAPI_DELETE api = new OrdersAPI_DELETE(this, baseUrl, token, item);
         api.execute();
+    }
+
+    @Override
+    public void onEditClick(OrderUnited item) {
+
+    }
+
+    @Override
+    public void onDeleteClick(OrderUnited item) {
+
     }
 
     @Override

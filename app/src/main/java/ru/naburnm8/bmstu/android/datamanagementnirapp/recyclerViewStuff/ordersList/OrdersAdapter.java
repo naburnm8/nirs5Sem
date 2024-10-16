@@ -39,13 +39,13 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.OrdersView
 
     @Override
     public void onBindViewHolder(@NonNull @NotNull OrdersViewHolder ordersViewHolder, int i) {
-        Orders order = ordersArrayList.get(i);
+        OrderUnited order = orderUnitedArrayList.get(i);
         ordersViewHolder.bind(order);
     }
 
     @Override
     public int getItemCount() {
-        return ordersArrayList.size();
+        return orderUnitedArrayList.size();
     }
 
     private Set<KeyPair> getUniqueKeyPairs(){
@@ -86,10 +86,18 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.OrdersView
             deleteButton = itemView.findViewById(R.id.deleteOrderButton);
         }
 
-        public void bind(final Orders order) {
-            orderId.setText(String.valueOf(order.getId()));
-            nameItem.setText(order.getItem().getItemName());
-            quantityItem.setText(String.valueOf(order.getqItem()));
+        public void bind(final OrderUnited order) {
+            StringBuilder ids = new StringBuilder();
+            StringBuilder names = new StringBuilder();
+            int quantity = 0;
+            for(Orders orderObj : order.getOrders()){
+                ids.append(orderObj.getId()).append(" ");
+                names.append("[").append(orderObj.getItem().getId()).append(" ").append(orderObj.getItem().getItemName()).append(": ").append(orderObj.getqItem()).append("] ");
+                quantity += orderObj.getqItem();
+            }
+            orderId.setText(ids.toString());
+            nameItem.setText(names.toString());
+            quantityItem.setText(String.valueOf(quantity));
             dateOfTransaction.setText(order.getDateOfTransaction());
             String name = order.getClient().getFirstName() + " " + order.getClient().getLastName();
             clientId.setText(name);

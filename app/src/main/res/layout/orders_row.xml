@@ -6,9 +6,16 @@
                                                    android:layout_height="wrap_content"
                                                    android:padding="16dp">
 
-    <!-- Order ID -->
 
-    <!-- Item Name -->
+    <TextView
+            android:id="@+id/border2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true"
+            android:background="#808080"
+            tools:layout_editor_absoluteX="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/tvClientId"
+            android:layout_marginTop="16dp"/>
 
     <TextView
             android:id="@+id/tvOrderId"
@@ -21,9 +28,7 @@
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="64dp"/>
 
-    <!-- Quantity -->
 
-    <!-- Date of Transaction -->
 
     <TextView
             android:id="@+id/tvNameItem"
@@ -33,9 +38,19 @@
             android:textSize="16sp"
             app:layout_constraintTop_toBottomOf="@+id/tvOrderId"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="8dp"/>
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp"/>
 
-    <!-- Client ID -->
+
+    <Button
+            android:id="@+id/deleteOrderButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Delete"
+            app:layout_constraintStart_toEndOf="@id/editOrderButton"
+            android:layout_marginStart="4dp"
+            android:backgroundTint="@color/red"
+            app:layout_constraintTop_toTopOf="@+id/editOrderButton"/>
 
     <TextView
             android:id="@+id/tvQuantityItem"
@@ -43,9 +58,21 @@
             android:layout_height="wrap_content"
             android:text="Quantity"
             android:textSize="16sp"
-            app:layout_constraintTop_toBottomOf="@+id/tvNameItem"
+            app:layout_constraintBottom_toTopOf="@+id/tvDateOfTransaction"
+            android:layout_marginBottom="4dp"
+            app:layout_constraintStart_toEndOf="@+id/textView9"
+            android:layout_marginStart="4dp"/>
+
+    <TextView
+            android:text="@string/quantity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView9"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="76dp"/>
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@+id/tvDateOfTransaction"
+            android:layout_marginBottom="4dp"
+            android:layout_marginStart="8dp"/>
 
     <TextView
             android:id="@+id/tvDateOfTransaction"
@@ -53,13 +80,11 @@
             android:layout_height="wrap_content"
             android:text="Date of Transaction"
             android:textSize="16sp"
-            app:layout_constraintTop_toBottomOf="@+id/tvQuantityItem"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="8dp"/>
+            android:layout_marginStart="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/tvNameItem"
+            android:layout_marginTop="32dp"/>
 
-    <!-- Edit Button -->
-
-    <!-- Delete Button -->
     <TextView
             android:id="@+id/tvClientId"
             android:layout_width="wrap_content"
@@ -68,28 +93,17 @@
             android:textSize="16sp"
             app:layout_constraintTop_toBottomOf="@+id/tvDateOfTransaction"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="8dp"/>
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp"/>
 
     <Button
             android:id="@+id/editOrderButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Edit"
-            app:layout_constraintTop_toBottomOf="@+id/tvClientId"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="24dp"
-            android:layout_marginStart="200dp"/>
-
-    <Button
-            android:id="@+id/deleteOrderButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Delete"
-            app:layout_constraintTop_toBottomOf="@+id/tvClientId"
-            app:layout_constraintStart_toEndOf="@id/editOrderButton"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="24dp"
-            android:backgroundTint="@color/red"/>
+            android:layout_marginStart="200dp"
+            app:layout_constraintTop_toTopOf="@+id/tvDateOfTransaction"/>
 
     <TextView
             android:text="@string/orderID"
@@ -100,16 +114,5 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/tvOrderId"
             app:layout_constraintHorizontal_bias="0.888"/>
-
-    <TextView
-            android:text="@string/quantity"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView9"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvNameItem"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toStartOf="@+id/tvQuantityItem"
-            app:layout_constraintHorizontal_bias="0.615"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
