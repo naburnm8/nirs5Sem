@@ -54,5 +54,6 @@
     <string name="chooseAClient">Choose a client</string>
     <string name="longPressQuantityNotice">Enter number manually</string>
     <string name="pleaseChooseACatalogue">Please choose an item</string>
+    <string name="cancel">Cancel</string>
 
 </resources>

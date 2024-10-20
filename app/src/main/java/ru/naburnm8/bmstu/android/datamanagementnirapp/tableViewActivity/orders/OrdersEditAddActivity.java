@@ -1,9 +1,13 @@
 package ru.naburnm8.bmstu.android.datamanagementnirapp.tableViewActivity.orders;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.*;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -28,7 +32,7 @@ import java.security.GeneralSecurityException;
 
 public class OrdersEditAddActivity extends AppCompatActivity implements OnItemClickListener {
     TextView username, role, clientName, itemName, quantityChosenText;
-    Button chooseClient, addItems, submit, chooseItem;
+    Button chooseClient, addItems, submit, chooseItem, enterManually;
     EditText editDate;
     RecyclerView recyclerView;
     SeekBar seekBar;
@@ -58,6 +62,7 @@ public class OrdersEditAddActivity extends AppCompatActivity implements OnItemCl
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         seekBar = findViewById(R.id.seekBarQuantity);
         quantityChosenText = findViewById(R.id.quantityChosen);
+        enterManually = findViewById(R.id.enterManually);
         object = new OrderUnited();
 
 
@@ -112,9 +117,11 @@ public class OrdersEditAddActivity extends AppCompatActivity implements OnItemCl
         addItems.setOnClickListener(view -> {
            if (currentCatalogue == null) {
                Toast.makeText(getApplicationContext(), getText(R.string.pleaseChooseACatalogue), Toast.LENGTH_SHORT).show();
+               return;
            }
            if (object.getClient() == null){
                Toast.makeText(getApplicationContext(), getText(R.string.chooseAClient), Toast.LENGTH_SHORT).show();
+               return;
            }
            Orders toAdd = new Orders();
            toAdd.setClient(object.getClient());
@@ -145,6 +152,30 @@ public class OrdersEditAddActivity extends AppCompatActivity implements OnItemCl
                     ordersAPIPut.execute();
                 }
             }
+        });
+        enterManually.setOnClickListener(view -> {
+            LayoutInflater inflater = LayoutInflater.from(this);
+            View dialogueView = inflater.inflate(R.layout.dialog_number_input, null);
+            EditText numberInput = dialogueView.findViewById(R.id.numberInput);
+
+            AlertDialog.Builder dialogueBuilder = new AlertDialog.Builder(this);
+            dialogueBuilder.setView(dialogueView).setTitle(R.string.quantity).setPositiveButton(R.string.submit, (dialog, which) -> {
+                String input = numberInput.getText().toString();
+                if(!input.isEmpty()){
+                    int number = Integer.parseInt(input);
+                    quantityChosenText.setText(String.valueOf(number));
+                    quantityChosen = number;
+                }
+                else{
+                    dialog.dismiss();
+                }
+            }).setNegativeButton(R.string.cancel, (dialog, which) -> {
+                dialog.dismiss();
+            });
+
+            AlertDialog dialog = dialogueBuilder.create();
+            dialog.show();
+
         });
 
     }

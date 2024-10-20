@@ -181,13 +181,13 @@ public class StorageViewActivity extends AppCompatActivity implements OnDBandRec
     private boolean checkPrivilege (String privilege){
         String role = encryptedSharedPreferences.getString("role", "");
         if(privilege.equals("delete")){
-            return role.contains("ADMINISTRATOR");
+            return role.contains("ADMINISTRATOR") || role.contains("STORAGE");
         }
         else if(privilege.equals("add")){
-            return role.contains("ADMINISTRATOR");
+            return role.contains("ADMINISTRATOR") || role.contains("STORAGE");
         }
         else if(privilege.equals("edit")){
-            return role.contains("ADMINISTRATOR");
+            return role.contains("ADMINISTRATOR") || role.contains("STORAGE");
         }
         return true;
     }
