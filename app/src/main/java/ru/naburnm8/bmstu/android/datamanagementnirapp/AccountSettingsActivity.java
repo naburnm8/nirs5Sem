@@ -19,10 +19,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.security.crypto.EncryptedSharedPreferences;
 import androidx.security.crypto.MasterKeys;
-import ru.naburnm8.bmstu.android.datamanagementnirapp.RESTDatabase.RESTDBOutput;
-import ru.naburnm8.bmstu.android.datamanagementnirapp.RESTDatabase.databaseAPI.catalogue.CatalogueAPI_GET;
 import ru.naburnm8.bmstu.android.datamanagementnirapp.RESTDatabase.databaseAPI.orders.OrdersAPI_GET;
-import ru.naburnm8.bmstu.android.datamanagementnirapp.RESTDatabase.models.Orders;
 import ru.naburnm8.bmstu.android.datamanagementnirapp.RESTDatabase.models.Recordable;
 import ru.naburnm8.bmstu.android.datamanagementnirapp.RESTDatabase.models.requests.OrdersResponse;
 import ru.naburnm8.bmstu.android.datamanagementnirapp.misc.OnGenerationListener;
@@ -89,6 +86,9 @@ public class AccountSettingsActivity extends AppCompatActivity implements OnGene
         settingsButton.setOnClickListener(view -> {
             showProtectionDialogue();
         });
+        if(!sharedPreferencesEncrypted.getString("role", "ERROR").contains("ADMINISTRATOR") && sharedPreferencesEncrypted.getString("role", "ERROR").contains("CONSULTANT")){
+            generateAReportBtn.setVisibility(View.INVISIBLE);
+        }
 
     }
 
