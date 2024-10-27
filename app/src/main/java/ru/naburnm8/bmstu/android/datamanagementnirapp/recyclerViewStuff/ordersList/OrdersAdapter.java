@@ -14,6 +14,7 @@ import ru.naburnm8.bmstu.android.datamanagementnirapp.RESTDatabase.models.Client
 import ru.naburnm8.bmstu.android.datamanagementnirapp.RESTDatabase.models.Orders;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -68,9 +69,11 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.OrdersView
     }
     public ArrayList<OrderUnited> getSortedBy(String criterion){
         if (criterion.contains("date")){
-
+            Collections.sort(orderUnitedArrayList, OrderUnited.dateComparator);
+            return orderUnitedArrayList;
         } else if(criterion.contains("cost")){
-
+            Collections.sort(orderUnitedArrayList, OrderUnited.totalCostComparator);
+            return orderUnitedArrayList;
         }
         return orderUnitedArrayList;
     }

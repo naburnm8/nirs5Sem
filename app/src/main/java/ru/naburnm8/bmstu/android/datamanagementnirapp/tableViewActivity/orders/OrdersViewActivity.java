@@ -46,7 +46,7 @@ public class OrdersViewActivity extends AppCompatActivity implements OnDBandRecy
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        //INVARIANT
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sorted_view_activity);
         recyclerView = findViewById(R.id.recyclerViewActivity);
@@ -67,9 +67,28 @@ public class OrdersViewActivity extends AppCompatActivity implements OnDBandRecy
         }
         String baseUrl = sharedPreferences.getString("serverSocket", "");
         String token = encryptedSharedPreferences.getString("token", "");
-        //NOT INVARIANT
+
         OrdersAPI_GET API_get = new OrdersAPI_GET(this, baseUrl, token);
-        //NOT INVARIANT
+        sortByPriceBtn.setOnClickListener(view -> {
+            ArrayList<OrderUnited> sorted = currentAdapter.getSortedBy("cost");
+            currentAdapter = new OrdersAdapter(sorted, this, true);
+            recyclerView.setAdapter(currentAdapter);
+        });
+        sortByDateBtn.setOnClickListener(view -> {
+            ArrayList<OrderUnited> sorted = currentAdapter.getSortedBy("date");
+            currentAdapter = new OrdersAdapter(sorted, this, true);
+            recyclerView.setAdapter(currentAdapter);
+        });
+        sortByDateBtn.setOnLongClickListener(view -> {
+            currentAdapter = new OrdersAdapter(objects, this);
+            recyclerView.setAdapter(currentAdapter);
+            return true;
+        });
+        sortByPriceBtn.setOnLongClickListener(view -> {
+            currentAdapter = new OrdersAdapter(objects, this);
+            recyclerView.setAdapter(currentAdapter);
+            return true;
+        });
         sync.setOnLongClickListener(view -> {
             LoginAPI loginAPI = new LoginAPI(this, baseUrl);
             String login = encryptedSharedPreferences.getString("username", "");
@@ -80,14 +99,12 @@ public class OrdersViewActivity extends AppCompatActivity implements OnDBandRecy
             loginAPI.execute(loginRequest);
             return true;
         });
-        //INVARIANT
-        //NOT INVARIANT
+
         sync.setOnClickListener(view -> {
             OrdersAPI_GET API_get_1 = new OrdersAPI_GET(this, baseUrl, token);
             API_get_1.execute();
         });
-        //NOT INVARIANT
-        //INVARIANT
+
         addButton.setOnClickListener(view ->{
             if(!checkPrivilege("add")){
                 Toast.makeText(getApplicationContext(), getText(R.string.noAddPermission), Toast.LENGTH_LONG).show();
@@ -96,7 +113,7 @@ public class OrdersViewActivity extends AppCompatActivity implements OnDBandRecy
             Intent intent = new Intent(this, OrdersEditAddActivity.class);
             startActivity(intent);
         });
-        //INVARIANT
+
         OrdersAdapter adapter = new OrdersAdapter(new ArrayList<>(), this);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);

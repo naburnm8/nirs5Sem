@@ -64,22 +64,23 @@ public class OrderUnited implements Serializable {
         return "Client: " + client.getLastName() + " date: " + dateOfTransaction + " listLen: " + orders.size();
     }
     public static String getTodayDate() {
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            LocalDate today = LocalDate.now();
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-            return formatter.format(today);
-        }
-        return "";
+        LocalDate today = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        return formatter.format(today);
     }
     public String getTotalCostFormatted(){
         return String.valueOf(totalCost) + currency_format;
     }
-    public static Comparator<OrderUnited> dateComparator = (o1, o2) -> {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd"); // Adjust pattern if needed
-        LocalDate date1 = LocalDate.parse(o1.getDate(), formatter);
-        LocalDate date2 = LocalDate.parse(o2.getDate(), formatter);
-        return date1.compareTo(date2);
+    public int getTotalCost(){
+        return totalCost;
     }
+    public static Comparator<OrderUnited> dateComparator = (o1, o2) -> {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate date1 = LocalDate.parse(o1.getDateOfTransaction(), formatter);
+        LocalDate date2 = LocalDate.parse(o2.getDateOfTransaction(), formatter);
+        return date1.compareTo(date2);
+    };
+    public static Comparator<OrderUnited> totalCostComparator = Comparator.comparingInt(OrderUnited::getTotalCost);
     private int countTotalCost(){
         int sum = 0;
         for(Orders order: orders){

@@ -8,7 +8,7 @@ android {
 
     defaultConfig {
         applicationId = "ru.naburnm8.bmstu.android.datamanagementnirapp"
-        minSdk = 24
+        minSdk = 26
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -46,5 +46,4 @@ dependencies {
     implementation ("androidx.lifecycle:lifecycle-runtime:2.3.1")
     implementation ("com.google.code.gson:gson:2.6.2")
     implementation ("androidx.security:security-crypto:1.0.0")
-
 }
