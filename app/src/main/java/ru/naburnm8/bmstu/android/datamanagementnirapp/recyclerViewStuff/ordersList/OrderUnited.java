@@ -8,11 +8,14 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Comparator;
 
 public class OrderUnited implements Serializable {
     private String dateOfTransaction;
     private Clients client;
     private ArrayList<Orders> orders;
+    private int totalCost;
+    private final String currency_format = "₽";
     public OrderUnited(ArrayList<Orders> orders) {
         this.dateOfTransaction = orders.get(0).getDateOfTransaction();
         this.client = orders.get(0).getClient();
@@ -22,12 +25,13 @@ public class OrderUnited implements Serializable {
                 throw new RuntimeException("Dataset exception: Orders key pair mismatch");
             }
         }
-
+        this.totalCost = countTotalCost();
     }
     public OrderUnited() {
         this.dateOfTransaction = getTodayDate();
         this.client = null;
         this.orders = new ArrayList<>();
+        this.totalCost = 0;
     }
     public String getDateOfTransaction() {
         return dateOfTransaction;
@@ -51,6 +55,7 @@ public class OrderUnited implements Serializable {
 
     public void setOrders(ArrayList<Orders> orders) {
         this.orders = orders;
+        this.totalCost = countTotalCost();
     }
 
     @NotNull
@@ -66,4 +71,23 @@ public class OrderUnited implements Serializable {
         }
         return "";
     }
+    public String getTotalCostFormatted(){
+        return String.valueOf(totalCost) + currency_format;
+    }
+    public static Comparator<OrderUnited> dateComparator = (o1, o2) -> {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd"); // Adjust pattern if needed
+        LocalDate date1 = LocalDate.parse(o1.getDate(), formatter);
+        LocalDate date2 = LocalDate.parse(o2.getDate(), formatter);
+        return date1.compareTo(date2);
+    }
+    private int countTotalCost(){
+        int sum = 0;
+        for(Orders order: orders){
+            sum+=order.getqItem()*order.getItem().getItemPrice();
+        }
+        return sum;
+    }
+
+
+
 }

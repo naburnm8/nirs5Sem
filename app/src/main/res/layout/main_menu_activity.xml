@@ -7,12 +7,15 @@
 
     <androidx.recyclerview.widget.RecyclerView
             android:layout_width="411dp"
-            android:layout_height="497dp"
+            android:layout_height="0dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="96dp"
-            android:id="@+id/actionsList"/>
+            android:id="@+id/actionsList"
+            app:layout_constraintBottom_toTopOf="@+id/usernameMainMenu"
+            app:layout_constraintVertical_bias="0.0"
+            android:layout_marginBottom="16dp"/>
 
     <TextView
             android:text="@string/currentLogin"

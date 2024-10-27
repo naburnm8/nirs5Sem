@@ -55,5 +55,7 @@
     <string name="longPressQuantityNotice">Enter number manually</string>
     <string name="pleaseChooseACatalogue">Please choose an item</string>
     <string name="cancel">Cancel</string>
+    <string name="sortByDate">By date</string>
+    <string name="sortByPrice">By price</string>
 
 </resources>

@@ -35,10 +35,11 @@ import java.util.ArrayList;
 
 public class OrdersViewActivity extends AppCompatActivity implements OnDBandRecyclerListener {
     RecyclerView recyclerView;
-    Button addButton;
+    Button addButton, sortByPriceBtn, sortByDateBtn;
     ImageView sync;
     TextView message;
     ArrayList<Orders> objects;
+    OrdersAdapter currentAdapter;
     SharedPreferences sharedPreferences;
     SharedPreferences encryptedSharedPreferences;
     SharedPreferences sharedSettings;
@@ -47,11 +48,13 @@ public class OrdersViewActivity extends AppCompatActivity implements OnDBandRecy
     protected void onCreate(Bundle savedInstanceState) {
         //INVARIANT
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.view_activity);
+        setContentView(R.layout.sorted_view_activity);
         recyclerView = findViewById(R.id.recyclerViewActivity);
         addButton = findViewById(R.id.addAnEntryRecycler);
         sync = findViewById(R.id.syncButton);
         message = findViewById(R.id.tokenMessageText);
+        sortByDateBtn = findViewById(R.id.sortByDateBtn);
+        sortByPriceBtn = findViewById(R.id.sortByPriceBtn);
         sharedPreferences = getSharedPreferences("account", MODE_PRIVATE);
         sharedSettings = getSharedPreferences("settings", MODE_PRIVATE);
         try{
@@ -97,6 +100,7 @@ public class OrdersViewActivity extends AppCompatActivity implements OnDBandRecy
         OrdersAdapter adapter = new OrdersAdapter(new ArrayList<>(), this);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
+        currentAdapter = adapter;
         API_get.execute();
     }
 
@@ -141,6 +145,7 @@ public class OrdersViewActivity extends AppCompatActivity implements OnDBandRecy
         }
         message.setVisibility(View.INVISIBLE);
         OrdersAdapter adapter = new OrdersAdapter(objects, this);
+        currentAdapter = adapter;
         recyclerView.setAdapter(adapter);
     }
 

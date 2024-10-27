@@ -28,6 +28,17 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.OrdersView
         this.orderUnitedArrayList = new ArrayList<>();
         fillUnitedOrders(getUniqueKeyPairs());
     }
+    public OrdersAdapter(ArrayList<OrderUnited> orderUnitedArrayList, OnDBandRecyclerListener context, boolean forced){
+        if(!forced){
+            this.ordersArrayList = null;
+            this.context = null;
+            this.orderUnitedArrayList = null;
+            return;
+        }
+        this.context = context;
+        this.orderUnitedArrayList = orderUnitedArrayList;
+        this.ordersArrayList = null;
+    }
 
     @NonNull
     @NotNull
@@ -55,6 +66,14 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.OrdersView
         }
         return uniqueKeyPairs;
     }
+    public ArrayList<OrderUnited> getSortedBy(String criterion){
+        if (criterion.contains("date")){
+
+        } else if(criterion.contains("cost")){
+
+        }
+        return orderUnitedArrayList;
+    }
 
     private void fillUnitedOrders(Set<KeyPair> uniqueKeyPairs){
         ArrayList<Orders> orders = new ArrayList<>();
@@ -72,7 +91,7 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.OrdersView
     }
 
     public class OrdersViewHolder extends RecyclerView.ViewHolder {
-        TextView orderId, nameItem, quantityItem, dateOfTransaction, clientId;
+        TextView orderId, nameItem, quantityItem, dateOfTransaction, clientId, totalCostString;
         Button editButton, deleteButton;
 
         public OrdersViewHolder(@NonNull @NotNull View itemView) {
@@ -84,6 +103,7 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.OrdersView
             clientId = itemView.findViewById(R.id.tvClientId);
             editButton = itemView.findViewById(R.id.editOrderButton);
             deleteButton = itemView.findViewById(R.id.deleteOrderButton);
+            totalCostString = itemView.findViewById(R.id.totalPrice);
         }
 
         public void bind(final OrderUnited order) {
@@ -101,6 +121,7 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.OrdersView
             dateOfTransaction.setText(order.getDateOfTransaction());
             String name = order.getClient().getFirstName() + " " + order.getClient().getLastName();
             clientId.setText(name);
+            totalCostString.setText(order.getTotalCostFormatted());
 
 
             editButton.setOnClickListener(view -> {
