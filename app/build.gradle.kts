@@ -28,6 +28,7 @@ android {
     }
 }
 
+
 dependencies {
     implementation("androidx.appcompat:appcompat:1.7.0")
     implementation("com.google.android.material:material:1.12.0")
@@ -46,4 +47,7 @@ dependencies {
     implementation ("androidx.lifecycle:lifecycle-runtime:2.3.1")
     implementation ("com.google.code.gson:gson:2.6.2")
     implementation ("androidx.security:security-crypto:1.0.0")
+    implementation ("com.aspose:aspose-words:24.3:android.via.java")
+
+
 }

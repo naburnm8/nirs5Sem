@@ -57,5 +57,8 @@
     <string name="cancel">Cancel</string>
     <string name="sortByDate">By date</string>
     <string name="sortByPrice">By price</string>
+    <string name="generateReport">Generate a sales report…</string>
+    <string name="startDate">Start date</string>
+    <string name="endDate">End date</string>
 
 </resources>

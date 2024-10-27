@@ -67,6 +67,13 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.OrdersView
         }
         return uniqueKeyPairs;
     }
+    private static Set<KeyPair> getUniqueKeyPairsStatic(ArrayList<Orders> ordersArrayList){
+        Set<KeyPair> uniqueKeyPairs = new HashSet<>();
+        for(Orders order : ordersArrayList){
+            uniqueKeyPairs.add(new KeyPair(order));
+        }
+        return uniqueKeyPairs;
+    }
     public ArrayList<OrderUnited> getSortedBy(String criterion){
         if (criterion.contains("date")){
             Collections.sort(orderUnitedArrayList, OrderUnited.dateComparator);
@@ -91,6 +98,23 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.OrdersView
             orderUnitedArrayList.add(new OrderUnited(orders));
             orders.clear();
         }
+    }
+    public static ArrayList<OrderUnited> getUnitedOrdersList(ArrayList<Orders> ordersArrayList){
+        ArrayList<Orders> orders = new ArrayList<>();
+        ArrayList<OrderUnited> out = new ArrayList<>();
+        Set<KeyPair> uniqueKeyPairs = getUniqueKeyPairsStatic(ordersArrayList);
+        for(KeyPair keyPair : uniqueKeyPairs){
+            for(Orders order : ordersArrayList){
+                String date = order.getDateOfTransaction();
+                Clients client = order.getClient();
+                if(date.equals(keyPair.getDateOfTransaction()) && client.equals(keyPair.getClient())){
+                    orders.add(order);
+                }
+            }
+            out.add(new OrderUnited(orders));
+            orders.clear();
+        }
+        return out;
     }
 
     public class OrdersViewHolder extends RecyclerView.ViewHolder {

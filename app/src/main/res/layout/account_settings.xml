@@ -56,4 +56,14 @@
             android:layout_marginStart="16dp"
             android:layout_marginBottom="372dp"
             android:textSize="24sp"/>
+
+    <Button
+            android:text="@string/generateReport"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/generateAReportButton"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/roleText"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="16dp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

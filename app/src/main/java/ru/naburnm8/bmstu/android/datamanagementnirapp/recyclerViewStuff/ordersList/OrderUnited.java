@@ -80,6 +80,19 @@ public class OrderUnited implements Serializable {
         LocalDate date2 = LocalDate.parse(o2.getDateOfTransaction(), formatter);
         return date1.compareTo(date2);
     };
+    public static int compareDates(OrderUnited e1, OrderUnited e2){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate date1 = LocalDate.parse(e1.getDateOfTransaction(), formatter);
+        LocalDate date2 = LocalDate.parse(e2.getDateOfTransaction(), formatter);
+        return date1.compareTo(date2);
+    }
+    public static int getTotal(ArrayList<OrderUnited> orders){
+        int sum = 0;
+        for(OrderUnited orderUnited: orders){
+            sum+=orderUnited.getTotalCost();
+        }
+        return sum;
+    }
     public static Comparator<OrderUnited> totalCostComparator = Comparator.comparingInt(OrderUnited::getTotalCost);
     private int countTotalCost(){
         int sum = 0;
