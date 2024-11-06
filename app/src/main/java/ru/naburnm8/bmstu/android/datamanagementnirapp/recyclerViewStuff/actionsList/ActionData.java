@@ -67,7 +67,6 @@ public class ActionData implements Serializable {
         out.add(new ActionData("RWU Orders", new String[]{"Read", "Write", "Update"}, "Table controls", "orders"));
         out.add(new ActionData("RWU Storage", new String[]{"Read", "Write", "Update"}, "Table controls", "storage"));
         out.add(new ActionData("RWU Supply", new String[]{"Read", "Write", "Update"}, "Table controls", "supply"));
-        out.add(new ActionData("RWU Users", new String[]{"Read", "Write", "Update"}, "Users controls", "users"));
         return out;
     }
 
